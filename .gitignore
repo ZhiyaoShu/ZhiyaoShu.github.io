@@ -50,7 +50,7 @@ eagle.epf
 # file locks introduced since 7.x
 *.lck
 node_modules
-.env
+.env.local
 pnpm-lock.yaml
 package-lock.json
 .gitignore

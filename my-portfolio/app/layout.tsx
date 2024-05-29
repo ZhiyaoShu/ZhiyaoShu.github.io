@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     default: "Zoey's Portfolio",
     template: "%s | Zoey Shu",
   },
-  description: "Developer, writer, and creator.",
+  description: "Developer, AI researcher.",
   openGraph: {
-    title: "Lee Robinson",
-    description: "Developer, writer, and creator.",
+    title: "Zoey's Portfolio",
+    description: "Developer, AI researcher.",
     url: "https://leerob.io",
-    siteName: "Lee Robinson",
+    siteName: "Zoey Shu",
     locale: "en_US",
     type: "website",
   },
@@ -36,10 +36,6 @@ export const metadata: Metadata = {
   twitter: {
     title: "Lee Robinson",
     card: "summary_large_image",
-  },
-  verification: {
-    google: "eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw",
-    yandex: "14d2e73487fa6c71",
   },
 };
 
@@ -59,7 +55,7 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
+      <body className="antialiased max-w-4xl justify-center mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
         <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
