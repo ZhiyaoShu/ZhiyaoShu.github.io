@@ -10,6 +10,9 @@ const navItems = {
   '/contact': {
     name: 'contact',
   },
+  '/mendeley': {
+    name: 'Mendeley AI',
+  },
 };
 
 export function Navbar() {

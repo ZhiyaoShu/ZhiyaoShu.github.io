@@ -4,10 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 import { BackTop } from "antd";
 import ProjectCard from "./components/projectList";
-import { DownloadIcon } from './components/icons';
-import { useState, useEffect } from 'react';
-import { Tabs, Modal } from 'antd';
-import Projects_list from "./components/projects_list.js";
+import { useState } from 'react';
+import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 

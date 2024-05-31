@@ -1,4 +1,7 @@
+'use client'
+
 import React, { useEffect } from 'react';
+import { Button } from "antd";
 
 export const Login = () => {
     const authorize = () => {
@@ -12,8 +15,8 @@ export const Login = () => {
 
     return (
         <div>
-            <h1>This application is from a long </h1>
-            <button onClick={authorize}>Login with Mendeley</button>
+            <h1>This application is inteded to speed up the  </h1>
+            <Button onClick={authorize}>Login with Mendeley</Button>
         </div>
     );
 };
