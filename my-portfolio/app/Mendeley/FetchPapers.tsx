@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import cancelIcon from "../../data/cancel.svg"
+import cancelIcon from "../../data/cancel.svg";
 import { Modal } from 'antd';
 import Login from './Login';
 
-const Papers = () => {
-  const [papers, setPapers] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface Paper {
+  id: string;
+  title: string;
+  abstract: string;
+  type: string;
+  authors: { first_name: string; last_name: string }[];
+  keywords?: string[];
+  last_modified: string;
+}
 
-  const handleBackClick = () => {
-    navigate('/works', { state: { scrollPosition: location.state?.fromCard } })
-  }
+const Papers: React.FC = () => {
+  const [papers, setPapers] = useState<Paper[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPapers = async () => {
@@ -25,7 +28,7 @@ const Papers = () => {
         return;
       }
 
-      let papersList = [];
+      let papersList: Paper[] = [];
 
       try {
         while (papersList.length < 20) {
@@ -43,7 +46,7 @@ const Papers = () => {
           if (papersList.length >= 20) break;
         }
         setPapers(papersList.slice(0, 20));
-      } catch (error) {
+      } catch (error: any) {
         if (error.response && error.response.status === 401) {
           setError('Invalid access token');
           setIsModalOpen(true);
@@ -59,13 +62,6 @@ const Papers = () => {
 
   return (
     <div>
-      <div>
-        <img onClick={handleBackClick}
-          src={cancelIcon}
-          alt="cancel"
-          className="card-details-cancel-container" />
-      </div>
-
       <h1>Your Papers</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
