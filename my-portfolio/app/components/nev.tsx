@@ -1,17 +1,17 @@
 import Link from 'next/link';
 
 const navItems = {
-  '/': {
-    name: 'work',
+  "/": {
+    name: "work",
   },
-  '/research': {
-    name: 'cv',
+  "/research": {
+    name: "cv",
   },
-  '/contact': {
-    name: 'contact',
+  "/contact": {
+    name: "contact",
   },
-  '/mendeley': {
-    name: 'Mendeley AI',
+  "/mindcoder": {
+    name: "mindcoder",
   },
 };
 

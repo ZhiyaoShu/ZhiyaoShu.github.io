@@ -1,69 +1,282 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { Tabs, Divider } from 'antd';
-import { ArrowIcon } from '../components/icons';
-import Bibliography from './bibliography';
-import Resume from './resume.json';
+import { useEffect, useState } from "react";
+import { ArrowIcon } from "../components/icons";
+// import Bibliography from './bibliography';
+import { resumeData } from "./resumeData";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/app/components/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/app/components/card";
+import { Button } from "@/app/components/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/avatar";
+import {
+  ChevronDown,
+  ChevronUp,
+  SortAsc,
+  SortDesc,
+  FileText,
+  School,
+  Factory,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/app/components/dropdown-menu";
+import { toast } from "@/app/hooks/use-toast";
 
-const { TabPane } = Tabs;
+type Experience = {
+  id: number;
+  title: string;
+  institution?: string;
+  company?: string;
+  location: string;
+  period: string;
+  description: string[];
+};
+
+type Publication = {
+  id: number;
+  title: string;
+  authors: string;
+  year: number;
+  month: string;
+  pdf?: string;
+  url?: string;
+  abstract: string;
+};
+
+const formatCitation = (
+  pub: Publication,
+  format: "APA" | "MLA" | "BibTeX"
+) => {};
 
 const Projects: React.FC = () => {
+  const [expandedExperience, setExpandedExperience] = useState<number | null>(
+    null
+  );
+  const [expandedPublication, setExpandedPublication] = useState<number | null>(
+    null
+  );
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [sortedPublications, setSortedPublications] = useState(
+    resumeData.publication
+  );
+
+  const toggleExperience = (id: number) => {
+    setExpandedExperience(expandedExperience === id ? null : id);
+  };
+
+  const togglePublication = (id: number) => {
+    setExpandedPublication(expandedPublication === id ? null : id);
+  };
+
+  const sortPublications = () => {
+    const newOrder = sortOrder === "asc" ? "desc" : "asc";
+    setSortOrder(newOrder);
+    setSortedPublications(
+      [...resumeData.publication].sort((a, b) =>
+        newOrder === "asc" ? a.year - b.year : b.year - a.year
+      )
+    );
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        toast({
+          title: "Citation copied",
+          description: "The citation has been copied to your clipboard.",
+        });
+      })
+      .catch(() => {
+        toast({
+          title: "Failed to copy",
+          description: "An error occurred while copying the citation.",
+          variant: "destructive",
+        });
+      });
+  };
 
   return (
-    <div>
-      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">Experiences</h1>
-      <a
-        className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-        rel="noopener noreferrer"
-        target="_blank"
-        href="https://www.linkedin.com/in/zhiyao-shu-4b4b0016b/"
-      >
-        <u className="mr-2 h-7">resume/cv.pdf</u>
-        <ArrowIcon />
-      </a>
-      <Tabs>
-        <TabPane tab="Practices" key="practices">
-          <div>
-            <h2 className="text-xl font-semibold">Experience</h2>
-            {Resume.Experience.map((exp, index) => (
-              <div key={index} className="mb-4">
-                <div className="font-bold">{exp.position}</div>
-                <div >{exp.company}</div>
-                <div className="italic">{exp.period}</div>
-
-                {exp.location && <div>{exp.location}</div>}
-                <ul>
-                  {exp.responsibilities.map((resp, i) => (
-                    <li key={i}>{resp}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <Divider />
-            <h2 className="text-xl font-semibold">Education & Certification</h2>
-            {Resume.Education_Certification.map((edu, index) => (
-              <div key={index} className="mb-4">
-                <div className="font-bold">{edu.institution}</div>
-                <div className="italic">{edu.period}</div>
-                {edu.degree && <div>{edu.degree}</div>}
-                {edu.location && <div>{edu.location}</div>}
-                <ul>
-                  {edu.details.map((detail, i) => (
-                    <li key={i}>{detail}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-
-          </div>
-        </TabPane>
-        <TabPane tab="Publication" key="publication">
-          <Bibliography />
-        </TabPane>
+    <div className="container mx-auto p-4">
+      <div className="flex items-center gap-8 mb-12">
+        <Avatar className="w-40 h-40 flex-shrink-0">
+          <AvatarImage
+            src="/placeholder.svg?height=96&width=96"
+            alt="Profile"
+          />
+          <AvatarFallback>CV</AvatarFallback>
+        </Avatar>
+        <div className="flex-grow">
+          <p className="text-muted-foreground">
+            Experienced researcher and data scientist with a focus on machine
+            learning and natural language processing. Passionate about
+            leveraging AI to solve complex problems and drive innovation in
+            various fields.
+          </p>
+        </div>
+      </div>
+      <Tabs defaultValue="experiences">
+        <TabsList className="mb-4">
+          <TabsTrigger value="experiences">Experiences</TabsTrigger>
+          <TabsTrigger value="publications">Publications</TabsTrigger>
+        </TabsList>
+        <TabsContent value="experiences">
+          {resumeData.experience.map((exp) => (
+            <Card key={exp.id} className="mb-4">
+              <CardHeader>
+                <CardTitle className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    {exp.institution ? (
+                      <School className="h-5 w-5 text-primary" />
+                    ) : (
+                      <Factory className="h-5 w-5 text-primary" />
+                    )}
+                    {exp.title}
+                  </div>
+                  <Button
+                    variant="ghost"
+                    onClick={() => toggleExperience(exp.id)}
+                  >
+                    {expandedExperience === exp.id ? (
+                      <ChevronUp />
+                    ) : (
+                      <ChevronDown />
+                    )}
+                  </Button>
+                </CardTitle>
+                <CardDescription>
+                  {exp.institution || exp.company} | {exp.location} |{" "}
+                  {exp.period}
+                </CardDescription>
+              </CardHeader>
+              {expandedExperience === exp.id && (
+                <CardContent>
+                  <ul className="list-disc pl-5 space-y-2">
+                    {exp.description.map((item, index) => (
+                      <li
+                        key={index}
+                        dangerouslySetInnerHTML={{ __html: item }}
+                      />
+                    ))}
+                  </ul>
+                </CardContent>
+              )}
+            </Card>
+          ))}
+        </TabsContent>
+        <TabsContent value="publications">
+          <Button onClick={sortPublications} className="mb-4">
+            Sort by Year{" "}
+            {sortOrder === "asc" ? (
+              <SortAsc className="ml-2" />
+            ) : (
+              <SortDesc className="ml-2" />
+            )}
+          </Button>
+          {sortedPublications.map((pub) => (
+            <Card key={pub.id} className="mb-4">
+              <CardHeader>
+                <CardTitle className="flex justify-between items-center">
+                  {pub.title}
+                  <Button
+                    variant="ghost"
+                    onClick={() => togglePublication(pub.id)}
+                  >
+                    {expandedPublication === pub.id ? (
+                      <ChevronUp />
+                    ) : (
+                      <ChevronDown />
+                    )}
+                  </Button>
+                </CardTitle>
+                <CardDescription>{pub.authors}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-2">
+                  {pub.month} {pub.year}
+                </p>
+                <div className="flex gap-2 mb-2">
+                  <Button variant="outline" size="sm" asChild>
+                    <a
+                      href={`/pdfs/${pub.pdf}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      PDF
+                    </a>
+                  </Button>
+                  {pub.url && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={pub.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Online
+                      </a>
+                    </Button>
+                  )}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        Cite
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "APA"))
+                        }
+                      >
+                        Copy APA
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "MLA"))
+                        }
+                      >
+                        Copy MLA
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "BibTeX"))
+                        }
+                      >
+                        Copy BibTeX
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+                {expandedPublication === pub.id && (
+                  <div className="mt-4">
+                    <h4 className="font-semibold mb-2">Abstract</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {pub.abstract}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </TabsContent>
       </Tabs>
     </div>
   );
-};
+}
 
 export default Projects;
