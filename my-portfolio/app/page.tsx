@@ -5,9 +5,13 @@ import Link from "next/link";
 import { BackTop } from "antd";
 import ProjectCard from "./components/projectList";
 import { useState } from 'react';
-import { Tabs } from 'antd';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/app/components/tabs";
 
-const { TabPane } = Tabs;
 
 export default function Page() {
   const categories = {
@@ -30,11 +34,12 @@ export default function Page() {
         </div>
       </section>
       <div className="flex flex-row ">
-        <Tabs defaultActiveKey="All">
-          <TabPane tab="Latest" key="Latest" >
-            <ProjectCard />
-
-          </TabPane>
+        <Tabs defaultValue="experiences">
+        <TabsList className="mb-4">
+          <TabsTrigger value="experiences">Latest</TabsTrigger>
+          <TabsTrigger value="publications">Publications</TabsTrigger>
+        </TabsList>
+        {/* <TabsContent></TabsContent> */}
         </Tabs>
       </div>
       <BackTop visibilityHeight={400} />

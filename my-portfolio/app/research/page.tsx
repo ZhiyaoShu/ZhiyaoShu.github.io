@@ -36,16 +36,6 @@ import {
 } from "@/app/components/dropdown-menu";
 import { toast } from "@/app/hooks/use-toast";
 
-type Experience = {
-  id: number;
-  title: string;
-  institution?: string;
-  company?: string;
-  location: string;
-  period: string;
-  description: string[];
-};
-
 type Publication = {
   id: number;
   title: string;
@@ -57,10 +47,29 @@ type Publication = {
   abstract: string;
 };
 
-const formatCitation = (
-  pub: Publication,
-  format: "APA" | "MLA" | "BibTeX"
-) => {};
+const formatCitation = (pub: Publication, format: "APA" | "MLA" | "BibTeX") => {
+  const authors = pub.authors.replace(/, /g, ", ").replace(/& /g, " & ");
+  switch (format) {
+    case "APA":
+      return `${authors} (${pub.year}, ${pub.month}). ${pub.title}. ${
+        pub.url ? pub.url : ""
+      }`;
+    case "MLA":
+      return `${authors}. "${pub.title}." ${pub.year}. ${
+        pub.url ? pub.url : ""
+      }`;
+    case "BibTeX":
+      return `@article{${pub.id},
+  author = {${authors}},
+  title = {${pub.title}},
+  year = {${pub.year}},
+  month = {${pub.month}},
+  url = {${pub.url ? pub.url : ""}},
+}`;
+    default:
+      return "";
+  }
+};
 
 const Projects: React.FC = () => {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(
@@ -73,6 +82,7 @@ const Projects: React.FC = () => {
   const [sortedPublications, setSortedPublications] = useState(
     resumeData.publication
   );
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   const toggleExperience = (id: number) => {
     setExpandedExperience(expandedExperience === id ? null : id);
@@ -82,15 +92,47 @@ const Projects: React.FC = () => {
     setExpandedPublication(expandedPublication === id ? null : id);
   };
 
-  const sortPublications = () => {
-    const newOrder = sortOrder === "asc" ? "desc" : "asc";
-    setSortOrder(newOrder);
-    setSortedPublications(
-      [...resumeData.publication].sort((a, b) =>
-        newOrder === "asc" ? a.year - b.year : b.year - a.year
-      )
-    );
+  const handleYearChange = (year: number) => {
+    setSelectedYear(year);
   };
+
+  const sortPublications = () => {
+    if (selectedYear !== null) {
+      setSortedPublications(
+        [...resumeData.publication]
+          .filter((pub) => pub.year === selectedYear)
+          .sort((a, b) => {
+            const monthOrder: { [key: string]: number } = {
+              January: 1,
+              February: 2,
+              March: 3,
+              April: 4,
+              May: 5,
+              June: 6,
+              July: 7,
+              August: 8,
+              September: 9,
+              October: 10,
+              November: 11,
+              December: 12,
+            };
+            return (
+              monthOrder[b.month as keyof typeof monthOrder] -
+              monthOrder[a.month as keyof typeof monthOrder]
+            );
+          })
+      );
+    } else {
+      const newOrder = sortOrder === "asc" ? "desc" : "asc";
+      setSortOrder(newOrder);
+      setSortedPublications(
+        [...resumeData.publication].sort((a, b) =>
+          newOrder === "asc" ? a.year - b.year : b.year - a.year
+        )
+      );
+    }
+  };
+
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard
@@ -111,7 +153,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 items-center justify-center">
       <div className="flex items-center gap-8 mb-12">
         <Avatar className="w-40 h-40 flex-shrink-0">
           <AvatarImage
@@ -239,25 +281,28 @@ const Projects: React.FC = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem
+                        className="cursor-pointer"
                         onClick={() =>
                           copyToClipboard(formatCitation(pub, "APA"))
                         }
                       >
-                        Copy APA
+                        APA
                       </DropdownMenuItem>
                       <DropdownMenuItem
+                        className="cursor-pointer"
                         onClick={() =>
                           copyToClipboard(formatCitation(pub, "MLA"))
                         }
                       >
-                        Copy MLA
+                        MLA
                       </DropdownMenuItem>
                       <DropdownMenuItem
+                        className="cursor-pointer"
                         onClick={() =>
                           copyToClipboard(formatCitation(pub, "BibTeX"))
                         }
                       >
-                        Copy BibTeX
+                        BibTeX
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -277,6 +322,6 @@ const Projects: React.FC = () => {
       </Tabs>
     </div>
   );
-}
+};
 
 export default Projects;

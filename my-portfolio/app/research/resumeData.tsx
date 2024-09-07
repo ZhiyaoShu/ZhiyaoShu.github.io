@@ -61,6 +61,8 @@ export const resumeData = {
     {
       id: 1,
       published: "Education Psychology and Public Media",
+      year: 2023,
+      month: 12,
       title:
         "Thumb up or head down? The impact of upvote on social media self-efficacy",
       authors: "Zhiyao Shu",
@@ -71,11 +73,11 @@ export const resumeData = {
     {
       id: 2,
       published: "CIKM 2024",
-      year: "2024",
+      year: 2024,
       title:
         "When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks",
       authors: "Zhiyao Shu, Xiangguo Sun, Hong Cheng",
-      month: "05",
+      month: 5,
       pdf: "ZhiyaoShu - When LLM Meets Hypergraph A Sociological Analysis on Personality via Online Social Networks.pdf",
       abstract: `Individual personalities significantly influence our perceptions, decisions, and social interactions, which is particularly crucial for gaining insights into human behavior patterns in online social network analysis. Many psychological studies have observed that personalities are strongly reflected in their social behaviors and social environments. Unfortunately, psychological traits like one's personality are high-level and hidden in the innermost corner of data, which is intractable to be uncovered by traditional data mining approaches; The data quality of online social networks is far from sufficient to support such profound psychological analysis, because user behavior records and their attributes are usually very fragmented, missing lots of key information to understand a person in depth; In addition, the social environments in online networks are very complicated, making the interaction patterns between users and their environments underexplored. 
       In light of these problems, this paper proposes a sociological analysis framework for one's personality in an environment-based view instead of individual-level data mining. Specifically, to comprehensively understand an individual's behavior from low-quality records, we leverage the powerful associative ability of LLMs by designing an effective prompt. In this way, LLMs can integrate various scattered information with their external knowledge to generate higher-quality profiles, which can significantly improve the personality analysis performance. To explore the interactive mechanism behind the users and their online environments, we design an effective hypergraph neural network where the hypergraph nodes are users and the hyperedges in the hypergraph are social environments. We offer a useful dataset with user profile data, personality traits, and several detected environments from the real-world social platform. To the best of our knowledge, this is the first network-based dataset containing both hypergraph structure and social information, which could push forward future research in this area further. By employing the framework on this dataset, we can effectively capture the nuances of individual personalities and their online behaviors, leading to a deeper understanding of human interactions in the digital world.
@@ -84,11 +86,11 @@ export const resumeData = {
     {
       id: 3,
       published: "CHI 2024",
-      year: "2024",
+      year: 2024,
       title:
         "MindCoder: An Ideation Tool for Inductive Qualitative Analysis with Large Language Models",
       authors: "Jie Gao, ShunYi Yeo, Zhiyao Shu",
-      month: "09",
+      month: 9,
       pdf: "",
       url: "",
       abstract: "",
@@ -96,10 +98,10 @@ export const resumeData = {
     {
       id: 4,
       published: "",
-      year: "2024",
+      year: 2024,
+      month: 10,
       title: "HAI texmony",
       authors: "Jie Gao, Zhiyao Shu",
-      time: "10",
       pdf: "",
       url: "",
       abstract: "",

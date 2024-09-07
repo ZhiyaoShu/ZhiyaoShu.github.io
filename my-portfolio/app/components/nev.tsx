@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import { ArrowIcon } from "../components/icons";
 
 const navItems = {
   "/": {
@@ -11,7 +12,7 @@ const navItems = {
     name: "contact",
   },
   "/mindcoder": {
-    name: "mindcoder",
+    name: "MindCoder",
   },
 };
 
@@ -25,6 +26,24 @@ export function Navbar() {
         >
           <div className="flex flex-row space-x-4 pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
+              if (path === "/mindcoder") {
+                return (
+                  <a
+                    key={path}
+                    href="https://mindcoder.ai/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2"
+                  >
+                    <span className="flex items-center">
+                      {name}
+                      <span className="ml-2">
+                        <ArrowIcon />
+                      </span>
+                    </span>
+                  </a>
+                );
+              }
               return (
                 <Link
                   key={path}
