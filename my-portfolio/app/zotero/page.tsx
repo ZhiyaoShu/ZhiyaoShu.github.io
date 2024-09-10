@@ -1,85 +1,41 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/app/components/button";
-import { Input } from "@/app/components/input";
-import { Label } from "@/app/components/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/app/components/card";
-import { AlertCircle } from "lucide-react";
+import React from "react";
+import { ReactFlow } from "@xyflow/react";
+import { LoginForm } from "./Login";
+import "@xyflow/react/dist/style.css";
 
-export function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [apiKey, setApiKey] = useState("");
+const initialNodes = [
+  { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
+  { id: "2", position: { x: 0, y: 100 }, data: { label: "2" } },
+];
+const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle the login and API key validation
-    console.log("Login attempt", { username, password, apiKey });
-    // Reset form fields after submission
-    setUsername("");
-    setPassword("");
-    setApiKey("");
-  };
-
+export default function Zotero() {
   return (
-    <Card className="w-full max-w-md mx-auto mt-8">
-      <CardHeader>
-        <CardTitle>AI Assistant Research</CardTitle>
-        <CardDescription>
-          Login to access the research interface
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="apiKey">OpenAI API Key</Label>
-            <Input
-              id="apiKey"
-              type="password"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              required
-            />
-          </div>
-          <div className="flex items-center space-x-2 text-sm text-amber-600">
-            <AlertCircle className="h-4 w-4" />
-            <p>This is a demo. Your API key and password won't be stored.</p>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter>
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-      </CardFooter>
-    </Card>
+    <div>
+      <div className="flex gap-6">
+        <div>
+          <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
+            Bench
+          </h1>
+          <p>
+            This is a tool I developed and used often to help me manage my
+            research papers collected and saved on Zotero, and fetch related
+            papers from open source academic libraries, such as arXiv, Semantic
+            Scholar, and Google Scholar for letting me know pioneer research
+            updates. Also review my current status of research and plan for the
+            next step.
+          </p>
+        </div>
+        <div
+          style={{ width: "150vw", height: "22vh" }}
+          className="flex-shrink-1 border"
+        >
+          <ReactFlow nodes={initialNodes} edges={initialEdges} />
+        </div>
+      </div>
+      <LoginForm />
+    </div>
   );
 }
