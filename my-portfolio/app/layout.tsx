@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Zoey's Portfolio",
     description: "Developer, AI researcher.",
     url: "https://leerob.io",
-    siteName: "Zoey Shu",
+    siteName: "Zoey's Portfolio",
     locale: "en_US",
     type: "website",
   },
