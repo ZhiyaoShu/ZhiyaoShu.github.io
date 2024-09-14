@@ -1,9 +1,9 @@
 
 export default function Footer() {
   return (
-    <div className="mb-16">
+    <div>
       <p className="mt-8 text-neutral-500 dark:text-neutral-300">
-        © {new Date().getFullYear()} Content coprighted by Zhiyao Shu. All rights reserved. UI inspired by
+        © {new Date().getFullYear()} Content coprighted by Zhiyao Shu. All rights reserved. UI inspired by {" "}
         <a
           href="https://brittanychiang.com/"
         >

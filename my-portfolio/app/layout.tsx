@@ -55,8 +55,8 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased overflow-x-hidden items-center mb-40 flex flex-col mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 max-w-4xl justify-center mt-6 flex flex-col px-2 md:px-0">
+      <body className="antialiased overflow-x-hidden items-center flex flex-col mx-4 mt-8 lg:mx-auto">
+        <main className="flex-auto min-w-0 max-w-3xl justify-start mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
           <Analytics />

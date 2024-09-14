@@ -34,7 +34,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/app/components/dropdown-menu";
-import { toast } from "@/app/hooks/use-toast";
+import { toast } from "@/app/components/use-toast";
 
 type Publication = {
   id: number;
