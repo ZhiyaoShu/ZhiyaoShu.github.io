@@ -57,3 +57,4 @@ package-lock.json
 .gitignore
 *.bib
 *.mdx
+pachage-lock.json
