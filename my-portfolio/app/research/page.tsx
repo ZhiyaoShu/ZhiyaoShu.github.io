@@ -79,6 +79,7 @@ const Projects: React.FC = () => {
     null
   );
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  
   const [sortedPublications, setSortedPublications] = useState(
     resumeData.publication
   );
@@ -133,7 +134,6 @@ const Projects: React.FC = () => {
     }
   };
 
-
   const copyToClipboard = (text: string) => {
     navigator.clipboard
       .writeText(text)
@@ -151,6 +151,21 @@ const Projects: React.FC = () => {
         });
       });
   };
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <div className="container mx-auto p-4 items-center justify-center">
@@ -248,20 +263,24 @@ const Projects: React.FC = () => {
                 <CardDescription>{pub.authors}</CardDescription>
               </CardHeader>
               <CardContent>
+                {/* Convert month number to month name */}
                 <p className="mb-2">
-                  {pub.month} {pub.year}
+                  {pub.month ? monthNames[pub.month - 1] : "Unknown month"}{" "}
+                  {pub.year}
                 </p>
                 <div className="flex gap-2 mb-2">
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={`/pdfs/${pub.pdf}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FileText className="mr-2 h-4 w-4" />
-                      PDF
-                    </a>
-                  </Button>
+                  {pub.pdf && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={`/pdfs/${pub.pdf}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="mr-2 h-4 w-4" />
+                        PDF
+                      </a>
+                    </Button>
+                  )}
                   {pub.url && (
                     <Button variant="outline" size="sm" asChild>
                       <a
@@ -273,45 +292,12 @@ const Projects: React.FC = () => {
                       </a>
                     </Button>
                   )}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        Cite
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "APA"))
-                        }
-                      >
-                        APA
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "MLA"))
-                        }
-                      >
-                        MLA
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "BibTeX"))
-                        }
-                      >
-                        BibTeX
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
                 </div>
                 {expandedPublication === pub.id && (
                   <div className="mt-4">
                     <h4 className="font-semibold mb-2">Abstract</h4>
                     <p className="text-sm text-muted-foreground">
-                      {pub.abstract}
+                      {pub.abstract || "No abstract available"}
                     </p>
                   </div>
                 )}
