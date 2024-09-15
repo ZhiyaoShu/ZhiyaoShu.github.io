@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import { describe } from "node:test";
 import { title } from "process";
 
@@ -67,6 +68,7 @@ export const resumeData = {
         "Thumb up or head down? The impact of upvote on social media self-efficacy",
       authors: "Zhiyao Shu",
       time: "Jan/2024",
+      url: "https://www.semanticscholar.org/paper/Thumb-up-or-Head-down-The-Impact-of-Upvote-on-Media-Shu/f66ec116f3cdb29722a853bea5e6d8c93ec6009d",
       pdf: "ZhiyaoShu - Thumb up or head down The impact of upvote on social media self-efficacy.pdf",
       abstract: "",
     },

@@ -11,9 +11,9 @@ const navItems = {
   "/contact": {
     name: "contact",
   },
-  "/zotero": {
-    name: "research ai",
-  },
+  // "/zotero": {
+  //   name: "bench",
+  // },
 };
 
 export function Navbar() {
