@@ -37,8 +37,17 @@ export default function Page() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const filteredProjects = selectedTag
-    ? projects.filter((project) => project.tags.includes(selectedTag))
-    : projects;
+    ? projects
+        .filter((project) => project.tags.includes(selectedTag))
+        .map((project) => ({
+          ...project,
+          description: project.description ?? "No description available",
+        }))
+    : projects.map((project) => ({
+        ...project,
+        description: project.description ?? "No description available",
+      }));
+
 
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.tags))
