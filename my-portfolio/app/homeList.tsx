@@ -18,11 +18,13 @@ export const projects = [
     project_url: "https://mindcoder.ai/",
     date: "5/20/2024",
     tags: ["Full-stack", "LLM", "API"],
+    image: "https://source.unsplash.com/8V8H1t4cJ6Q",
   },
   {
     id: 2,
     name: "Bench",
     date: "6/20/2024",
+    image: "https://source.unsplash.com/8V8H1t4cJ6Q",
     tags: ["function-calling", "Oath", "API"],
     short_description: "Personlized academic assistant for Mendely researchers",
     description: `Mendely Academic Data Assistant is a web application that provides a personlized `,
