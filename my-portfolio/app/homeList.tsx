@@ -1,8 +1,10 @@
+import { url } from "inspector";
+
 export const newsItems = [
   {
     id: 1,
     date: "2024-05-20",
-    text: "Accepted by CIKM 2024! Check out new paper `` ",
+    text: `Accepted by CIKM 2024! Check out new paper at  https://arxiv.org/abs/2407.03568`,
   },
   {
     id: 2,
@@ -14,21 +16,70 @@ export const newsItems = [
 export const projects = [
   {
     id: 1,
-    name: "MindCoder",
-    project_url: "https://mindcoder.ai/",
-    date: "5/20/2024",
-    tags: ["Full-stack", "LLM", "API"],
-    image: "https://source.unsplash.com/8V8H1t4cJ6Q",
+    name: "Facial Emotion Recognition",
+    date: "10/15/2023",
+    url: "https://gist.github.com/ZhiyaoShu/c991e1e432656cec00f5bfce5b8ac5",
+    image: ["/data/images/emotions.gif"],
+    tags: ["image recognition", "semantic analysis"],
+    layout: "horizontal",
+    isdirect: true,
+    description: (
+      <>
+        Visual expressions, particularly facial changes, serve as a prominent
+        mode of self-expression alongside linguistic methods. Humans can
+        effortlessly recognize facial images; however, machines face challenges
+        in classifying a range of emotions across diverse age groups, genders,
+        ethnicities, and other demographic factors . <br />
+        The objective of this project is to generate a comprehensive
+        understanding of facial emotion image processing by constructing and
+        evaluating state-of-the-art convolutional models, as acknowledged by
+        Bisogni et al (2024).
+        {/* <d-cite key='bisogni2023emotion'></d-cite>. */}
+        This endeavor aims to measure the accuracy and performance of these
+        models on a consistent dataset, thereby providing a robust comparative
+        analysis. <br />
+        Furthermore, this project employs three prominent transfer learning
+        models — VGG16, ResNet, and EfficientNet—leveraged their prevalence in
+        existing research landscapes. Notably, the EfficientNet model has been
+        utilized for video facial behavior analysis by Savchenko(2022)
+        {/* <d-cite key='savchenko2022video'></d-cite>  */}
+        and in real-time data analysis in the studies conducted by
+        Castellano(2021).
+        {/* <d-cite key='castellano2021real'></d-cite>.  */}
+        The outcomes of this project endeavor to serve as a validation
+        checkpoint for the conclusions delineated in these preceding studies.
+      </>
+    ),
   },
   {
     id: 2,
-    name: "Bench",
-    date: "6/20/2024",
-    image: "https://source.unsplash.com/8V8H1t4cJ6Q",
-    tags: ["function-calling", "Oath", "API"],
-    short_description: "Personlized academic assistant for Mendely researchers",
-    description: `Mendely Academic Data Assistant is a web application that provides a personlized `,
+    name: "When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks",
+    date: "5/20/2024",
+    tags: [
+      "data mining",
+      "LLM",
+      "hypergraph",
+      "deep learning",
+      "social network",
+    ],
+    isdirect: false,
+    url: "https://arxiv.org/abs/2407.03568",
+    image: ["/data/images/llm&hgn.jpg", "/data/images/llm_framework.jpg"],
+    layout: "vertical",
+    description:
+      "Individual personality traits largely determine our cognitive processes, decision-making, and social interactions, and this influence is especially pronounced in the information society. Today, interactions between people are no longer limited to physical reality, with an increasing number of interactions taking place in virtual spaces. Behavioral patterns within online social networks have become key clues for understanding individual personality traits. However, despite extensive psychological research indicating that an individual's social behavior and the social environment they inhabit deeply reflect their inherent personality traits, traditional data mining methods still have limitations in revealing these higher-level, latent psychological characteristics. In particular, data from online social networks often exhibit fragmentation, missing information, and high levels of noise, making in-depth analysis of individuals challenging. At the same time, the complexity of the social network environment further exacerbates the difficulty of analyzing interaction patterns between users and their surroundings.",
   },
+  {
+    id: 3,
+    name: "MindCoder AI",
+    isdirect: true,
+    url: "https://mindcoder.ai/",
+    date: "9/15/2024",
+    layout: "horizontal",
+    tags: ["full-stack", "LLM", "qualitative data analysis", "HAI"],
+    image: ["/data/images/mindcoderIcon.svg", "/data/images/mindcoder.svg"],
+  },
+
   // {
   //   title: "Nexa AI Search Tools",
   //   short_description: "Find the best AI tools as demands",

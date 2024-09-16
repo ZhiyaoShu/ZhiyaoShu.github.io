@@ -14,74 +14,92 @@ import {
 import { Button } from "@/app/components/button";
 import { Separator } from "@/app/components/separator";
 import { projects, newsItems } from "./homeList";
+import { ArrowIcon } from "@/app/components/icons";
 
 // Define the Project type
 type Project = {
   id: number;
   name: string;
-  tags: string[];
-  image: string;
+  tags?: string[];
+  image: string[];
   video?: string;
-  description: string;
+  url?: string;
+  description?: string | JSX.Element;
   date: string;
-};
-
-// Define the News type
-type NewsItem = {
-  id: number;
-  date: string;
-  text: string;
+  isdirect?: boolean;
+  layout: "horizontal" | "vertical";
 };
 
 export default function Page() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const filteredProjects = selectedTag
-    ? projects
-        .filter((project) => project.tags.includes(selectedTag))
-        .map((project) => ({
-          ...project,
-          description: project.description ?? "No description available",
-        }))
-    : projects.map((project) => ({
-        ...project,
-        description: project.description ?? "No description available",
-      }));
+  const sortedProjects = [...projects].sort((a, b) => b.id - a.id);
 
+  const filteredProjects = selectedTag
+    ? sortedProjects.filter((project) => project.tags?.includes(selectedTag))
+    : sortedProjects;
 
   const allTags = Array.from(
     new Set(projects.flatMap((project) => project.tags))
   );
 
+  const renderTextWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part: string, index: number) => {
+      if (urlRegex.test(part)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="black underline"
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div>
       <section>
-        <h1 className="mb-8 text-3xl font-semibold tracking-tighter">
-          Hi, I am Zoey
+        <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+          Hello, I am Zoey Shu
         </h1>
-        <p className="mb-4">A ML/Full-stack research engineer at the Bay Area, CA.</p>
+        <p className="mb-4">
+          A ML/Full-stack research engineer located at the Bay Area, CA.
+        </p>
         <div className="my-8"></div>
       </section>
 
       <section className="mb-12">
         <h2 className="mb-4 text-xl font-semibold">Recent News</h2>
         <div className="space-y-4">
-          {newsItems.map((item) => (
-            <div key={item.id} className="flex flex-col sm:flex-row text-wrap ">
-              <span className="text-sm text-gray-500 min-w-[100px] mb-1 sm:mb-0">
-                {item.date}
-              </span>
-              <Separator
-                className="hidden sm:block mx-4"
-                orientation="vertical"
-              />
-              <p>{item.text}</p>
-            </div>
-          ))}
+          {newsItems
+            .slice()
+            .sort((a, b) => b.id - a.id)
+            .map((item) => (
+              <div
+                key={item.id}
+                className="flex flex-col sm:flex-row text-wrap "
+              >
+                <span className="text-sm text-gray-500 min-w-[100px] mb-1 sm:mb-0">
+                  {item.date}
+                </span>
+                <Separator
+                  className="hidden sm:block mx-4"
+                  orientation="vertical"
+                />
+                <p>{renderTextWithLinks(item.text)}</p>
+              </div>
+            ))}
         </div>
       </section>
       <section className="mb-8">
-        <h2 className="mb-4 text-xl font-semibold">My Projects</h2>
+        <h2 className="mb-4 text-xl font-semibold">Personal Projects</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           {allTags.map((tag) => (
             <Badge
@@ -96,7 +114,13 @@ export default function Page() {
         </div>
         <div className="space-y-6">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={{
+                ...project,
+                layout: project.layout as "horizontal" | "vertical",
+              }}
+            />
           ))}
         </div>
       </section>
@@ -109,7 +133,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Card className="overflow-hidden">
       <div className="flex flex-col sm:flex-row">
-        <div className="w-full sm:w-1/3 min-w-[200px]">
+        <div className="w-full sm:w-1/3 min-w-[200px] p-2">
           {project.video ? (
             <video
               src={project.video}
@@ -118,17 +142,17 @@ function ProjectCard({ project }: { project: Project }) {
             />
           ) : (
             <img
-              src={project.image}
+              src={project.image[0]}
               alt={project.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           )}
         </div>
         <CardContent className="w-full sm:w-2/3 p-4 flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+            <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
             <div className="flex flex-wrap gap-2 mb-2">
-              {project.tags.map((tag) => (
+              {(project.tags ?? []).map((tag) => (
                 <Badge key={tag} variant="secondary">
                   {tag}
                 </Badge>
@@ -136,22 +160,73 @@ function ProjectCard({ project }: { project: Project }) {
             </div>
             <p className="text-sm text-gray-500 mb-4">{project.date}</p>
           </div>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Learn More</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>{project.name}</DialogTitle>
-              </DialogHeader>
-              <div className="mt-4">
-                <p>{project.description}</p>
-                <p className="mt-2 text-sm text-gray-500">
-                  Date: {project.date}
-                </p>
-              </div>
-            </DialogContent>
-          </Dialog>
+
+          {/* Conditional rendering for Learn More button */}
+          {project.isdirect && project.url ? (
+            <a href={project.url} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="w-[30%] text-left gap-3">
+                Learn More <ArrowIcon />
+              </Button>
+            </a>
+          ) : (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="w-[30%] text-left">
+                  Learn More
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <div
+                  className={`flex gap-4 ${
+                    project.layout === "horizontal"
+                      ? "w-[60%] flex-row"
+                      : "flex-col"
+                  }`}
+                >
+                  {Array.isArray(project.image) && project.image.length > 1 ? (
+                    <img
+                      src={project.image[1]}
+                      alt={project.name}
+                      className="h-auto object-contain mb-4"
+                    />
+                  ) : (
+                    <img
+                      src={project.image[0]}
+                      alt={project.name}
+                      className="h-auto object-contain mb-4"
+                    />
+                  )}
+                  <div
+                    className={` ${
+                      project.layout === "horizontal" ? "flex-col min-w-[20vh]" : ""
+                    }`}
+                  >
+                    <DialogHeader>
+                      <DialogTitle>{project.name}</DialogTitle>
+                    </DialogHeader>
+                    {project.url && (
+                      <p className="mt-4">
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="black underline font-semibold flex items-center gap-2"
+                        >
+                          Visit Project
+                          <ArrowIcon />
+                        </a>
+                      </p>
+                    )}
+                    <div className="flex flex-col justify-between">
+                      <p className="mt-2">
+                        {project.description || "No description available."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
         </CardContent>
       </div>
     </Card>

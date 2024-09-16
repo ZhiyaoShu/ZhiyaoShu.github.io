@@ -52,8 +52,8 @@ export default function Contact() {
         </li> */}
       </ul>
       <p>
-        Thanks for your time to visit my website. If you have any questions or
-        want to connect, feel free to reach out to me or leave me a message.
+        Thanks for your time to visit my website. If you have any question or
+        want to connect, feel free to reach out to me via email or leave me a message.
       </p>
       <ContactForm />
     </div>

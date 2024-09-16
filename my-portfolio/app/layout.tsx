@@ -6,6 +6,7 @@ import { Navbar } from "./components/nev";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
+import { Toaster } from "@/app/components/toaster";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://leerob.io"),
@@ -39,7 +40,8 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes: (string | false | null | undefined)[]) => classes.filter(Boolean).join(" ");
+const cx = (...classes: (string | false | null | undefined)[]) =>
+  classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
@@ -55,14 +57,15 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased overflow-x-hidden items-center flex flex-col mx-4 mt-8 lg:mx-auto">
+      <body className="antialiased overflow-x-hidden items-center flex flex-col g:mx-auto min-h-screen">
         <main className="flex-auto min-w-0 max-w-3xl justify-start mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
+          <Toaster />
           <Analytics />
           <SpeedInsights />
-          <Footer />
         </main>
+        <Footer />
       </body>
     </html>
   );

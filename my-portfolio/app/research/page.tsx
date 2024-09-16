@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ArrowIcon } from "../components/icons";
-// import Bibliography from './bibliography';
+import { useState, useEffect } from "react";
 import { resumeData } from "./resumeData";
 import {
   Tabs,
@@ -19,36 +17,37 @@ import {
 } from "@/app/components/card";
 import { Button } from "@/app/components/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/avatar";
-import {
-  ChevronDown,
-  ChevronUp,
-  SortAsc,
-  SortDesc,
-  FileText,
-  School,
-  Factory,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, School, Factory } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/app/components/dropdown-menu";
-import { toast } from "@/app/components/use-toast";
+import { useToast } from "@/app/components/use-toast";
+import { Badge } from "@/app/components/badge";
 
 type Publication = {
   id: number;
   title: string;
   authors: string;
   year: number;
-  month: string;
-  pdf?: string;
+  month: number;
   url?: string;
-  abstract: string;
+  conference?: string;
+  published?: string;
+  abstract: string | JSX.Element;
 };
 
 const formatCitation = (pub: Publication, format: "APA" | "MLA" | "BibTeX") => {
   const authors = pub.authors.replace(/, /g, ", ").replace(/& /g, " & ");
+
+  // 提取第一个作者的姓氏
+  const firstAuthorLastName = pub.authors.split(",")[0].trim().split(" ").pop();
+
+  // 标题简写（例如，只取前三个单词或关键字）
+  const titleKey = pub.title.split(" ").slice(0, 3).join("").toLowerCase();
+
   switch (format) {
     case "APA":
       return `${authors} (${pub.year}, ${pub.month}). ${pub.title}. ${
@@ -59,27 +58,31 @@ const formatCitation = (pub: Publication, format: "APA" | "MLA" | "BibTeX") => {
         pub.url ? pub.url : ""
       }`;
     case "BibTeX":
-      return `@article{${pub.id},
-  author = {${authors}},
-  title = {${pub.title}},
-  year = {${pub.year}},
-  month = {${pub.month}},
-  url = {${pub.url ? pub.url : ""}},
-}`;
+      return `@article{${firstAuthorLastName}${pub.year}${titleKey},
+              author = {${authors}},
+              title = {${pub.title}},
+              year = {${pub.year}},
+              journal = {${pub.published}},
+            }`;
     default:
       return "";
   }
 };
 
 const Projects: React.FC = () => {
+  useEffect(() => {
+    if (resumeData.experience.length > 0) {
+      setExpandedExperience(resumeData.experience[0].id);
+    }
+  }, []);
+
+  const { toast } = useToast();
   const [expandedExperience, setExpandedExperience] = useState<number | null>(
     null
   );
   const [expandedPublication, setExpandedPublication] = useState<number | null>(
     null
   );
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  
   const [sortedPublications, setSortedPublications] = useState(
     resumeData.publication
   );
@@ -93,96 +96,64 @@ const Projects: React.FC = () => {
     setExpandedPublication(expandedPublication === id ? null : id);
   };
 
-  const handleYearChange = (year: number) => {
+  const sortPublications = (year: number | null) => {
+    let filtered = year
+      ? resumeData.publication.filter((pub) => pub.year === year)
+      : resumeData.publication;
+
+    setSortedPublications(filtered.sort((a, b) => b.id - a.id));
+  };
+
+  useEffect(() => {
+    sortPublications(selectedYear);
+  }, [selectedYear]);
+
+  const handleYearChange = (year: number | null) => {
     setSelectedYear(year);
   };
 
-  const sortPublications = () => {
-    if (selectedYear !== null) {
-      setSortedPublications(
-        [...resumeData.publication]
-          .filter((pub) => pub.year === selectedYear)
-          .sort((a, b) => {
-            const monthOrder: { [key: string]: number } = {
-              January: 1,
-              February: 2,
-              March: 3,
-              April: 4,
-              May: 5,
-              June: 6,
-              July: 7,
-              August: 8,
-              September: 9,
-              October: 10,
-              November: 11,
-              December: 12,
-            };
-            return (
-              monthOrder[b.month as keyof typeof monthOrder] -
-              monthOrder[a.month as keyof typeof monthOrder]
-            );
-          })
-      );
-    } else {
-      const newOrder = sortOrder === "asc" ? "desc" : "asc";
-      setSortOrder(newOrder);
-      setSortedPublications(
-        [...resumeData.publication].sort((a, b) =>
-          newOrder === "asc" ? a.year - b.year : b.year - a.year
-        )
-      );
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      const { dismiss } = toast({
+        title: "Citation copied",
+        description: "The citation has been copied to your clipboard.",
+      });
+      setTimeout(() => {
+        dismiss();
+      }, 2000);
+    } catch (error) {
+      const { dismiss } = toast({
+        title: "Failed to copy",
+        description: "An error occurred while copying the citation.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        dismiss();
+      }, 2000);
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        toast({
-          title: "Citation copied",
-          description: "The citation has been copied to your clipboard.",
-        });
-      })
-      .catch(() => {
-        toast({
-          title: "Failed to copy",
-          description: "An error occurred while copying the citation.",
-          variant: "destructive",
-        });
-      });
-  };
-
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const years = Array.from(
+    new Set(resumeData.publication.map((pub) => pub.year))
+  ).sort((a, b) => b - a);
 
   return (
     <div className="container mx-auto p-4 items-center justify-center">
       <div className="flex items-center gap-8 mb-12">
         <Avatar className="w-40 h-40 flex-shrink-0">
-          <AvatarImage
-            src="/placeholder.svg?height=96&width=96"
-            alt="Profile"
-          />
+          <AvatarImage src="/data/images/avatar.jpg" alt="Profile" />
           <AvatarFallback>CV</AvatarFallback>
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            Experienced researcher and data scientist with a focus on machine
-            learning and natural language processing. Passionate about
-            leveraging AI to solve complex problems and drive innovation in
-            various fields.
+            Once been a landscape/architecture designer, now I am a
+            self-motivated researcher and developer specializing in machine
+            learning and natural language processing. <br />
+            Passionate about machine learning and human-centered AI interaction.
+            Theory-driven application development, with expertise in
+            classification tasks and few-shot learning. Dedicated to exploring
+            innovative solutions and advancing cutting-edge technologies.
           </p>
         </div>
       </div>
@@ -235,15 +206,28 @@ const Projects: React.FC = () => {
             </Card>
           ))}
         </TabsContent>
+
+        {/* Publication */}
         <TabsContent value="publications">
-          <Button onClick={sortPublications} className="mb-4">
-            Sort by Year{" "}
-            {sortOrder === "asc" ? (
-              <SortAsc className="ml-2" />
-            ) : (
-              <SortDesc className="ml-2" />
-            )}
-          </Button>
+          <div className="mb-4 flex flex-wrap gap-2">
+            <Badge
+              variant={selectedYear === null ? "default" : "outline"}
+              className="cursor-pointer"
+              onClick={() => handleYearChange(null)}
+            >
+              All Years
+            </Badge>
+            {years.map((year) => (
+              <Badge
+                key={year}
+                variant={selectedYear === year ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => handleYearChange(year)}
+              >
+                {year}
+              </Badge>
+            ))}
+          </div>
           {sortedPublications.map((pub) => (
             <Card key={pub.id} className="mb-4">
               <CardHeader>
@@ -263,24 +247,10 @@ const Projects: React.FC = () => {
                 <CardDescription>{pub.authors}</CardDescription>
               </CardHeader>
               <CardContent>
-                {/* Convert month number to month name */}
                 <p className="mb-2">
-                  {pub.month ? monthNames[pub.month - 1] : "Unknown month"}{" "}
-                  {pub.year}
+                  {pub.month} {pub.year}
                 </p>
                 <div className="flex gap-2 mb-2">
-                  {pub.pdf && (
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={`/pdfs/${pub.pdf}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="mr-2 h-4 w-4" />
-                        PDF
-                      </a>
-                    </Button>
-                  )}
                   {pub.url && (
                     <Button variant="outline" size="sm" asChild>
                       <a
@@ -288,16 +258,49 @@ const Projects: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Online
+                        View
                       </a>
                     </Button>
                   )}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        Cite
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "APA"))
+                        }
+                      >
+                        APA
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "MLA"))
+                        }
+                      >
+                        MLA
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() =>
+                          copyToClipboard(formatCitation(pub, "BibTeX"))
+                        }
+                      >
+                        BibTeX
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
                 {expandedPublication === pub.id && (
                   <div className="mt-4">
                     <h4 className="font-semibold mb-2">Abstract</h4>
                     <p className="text-sm text-muted-foreground">
-                      {pub.abstract || "No abstract available"}
+                      {pub.abstract}
                     </p>
                   </div>
                 )}

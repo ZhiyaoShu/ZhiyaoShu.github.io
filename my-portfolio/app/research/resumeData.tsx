@@ -32,7 +32,11 @@ export const resumeData = {
       institution: "Mens, Manus, and Machina (M3S)",
       location: "Remote",
       period: "Jun 2024 - Present",
-      description: [],
+      description: [
+        "Led the system implementation of a <strong>theory-driven AI platform</strong> for <strong>deductive qualitative analysis</strong>. Architected a global, hierarchial data management system with <strong>Zustand</strong> to optimize data retrieval from user inputs and uploaded files, integrating structured prompt embeddings with LLM API interactions. Achieved a <strong>40%</strong> improvement in data fetching speed and reduced data loss by <strong>20%</strong>.",
+        "Authored key sections of application-associated research paper, including <strong>system architecture</strong>, <strong>primary features</strong>, and <strong>related works</strong>. Created <strong>detailed diagrams</strong> for experiment result analysis. The paper has been submitted to CHI 2025 and is currently under review.",
+        "Contributed to human-AI collaboration research, annotating collaboration modes and analyzing taxonomies through cutting-edge studies. Reviewed over <strong>300 publications</strong> with collaborators to classify and evaluate human-AI interaction frameworks.",
+      ],
     },
     {
       id: 2,
@@ -41,20 +45,18 @@ export const resumeData = {
       location: "San Jose, CA",
       period: "Jan - Jun 2024",
       description: [
-        "Developed a series of RESTful API endpoints using Java and Spring Boot to process incoming requests from the frontend.",
-        "Implemented Controller, DTOs and Model layers with Spring MVC to manage HTTP requests and responses, optimizing data transfer between layers and improving performance.",
-        "Constructed aggregation pipelines using Spring MongoDB and MongoTemplate to perform querying and manipulation in MongoDB databases.",
-        "Implemented JWT Validation handling for session management and security. Utilized AWS Simple Email Service (SES) for automating email operations, enhancing user retention by 40%.",
-        "Developed interactive features using React, and Context API for state management. Utilized components, hooks, and libraries to create responsive and scalable web interfaces. Collaborated with designers to improve UI with Ant Design and Tailwind CSS, and integrated Tableau dashboard for data visualization.",
-        "Led the website SEO enhancement solutions, and applied effective image scaling and Google Cloud CDN optimization. Achieved a 30% reduction in search and loading time spent.",
-        "Spearheaded the development of language model SDK with Python to host the language model online and locally.",
-        "Utilized llama.cpp to quantize language models on Ollama (Long Chain) to convert models to Q2 - F16 GGUF formats.",
-        "Applied LoRa (Keras) for fine-tuning the model to facilitate cross-application collaboration tasks.",
-        "Developed an application with Gradios to host the model, enabling direct interaction with the updated models and facilitating real-time feedback. Resulted in a 33% improvement in content generation quality and a 1.5% decrease in memory usage. The quantized models acquired 1521 overall downloads.",
-        "Developed a FastAPI platform using Python to facilitate integration between third-party LLMs and application APIs.",
-        "Configured HTTP middleware for API security, managing request authorization headers to ensure data security.",
-        "Engineered the mobile version of the platform using Java in Android Studio, developing essential utility class modules to enable a function-driven language model supporting on-device actions.",
-        "Produced demos to effectively communicate the platform’s features and business value to stakeholders.",
+        "Developed a series of <strong>RESTful API</strong> endpoints using Java and Spring Boot to process requests from the frontend.",
+        "Implemented <strong>Controller</strong>, <strong>DTOs</strong>, and <strong>Model layers</strong> with Spring MVC to manage HTTP requests and responses, optimizing data transfer between layers and improving performance.",
+        "Constructed aggregation pipelines using Spring MongoDB and <strong>MongoTemplate</strong> to perform querying and manipulation in MongoDB databases.",
+        "Implemented <strong>JWT Validation</strong> handling for session management and security. Utilized <strong>AWS Simple Email Service (SES)</strong> for automating email operations, enhancing user retention by 40%.",
+        "Developed interactive features using <strong>React</strong>, and <strong>Context API</strong> for state management. Utilized components, hooks, and libraries to create responsive and scalable web interfaces. Collaborated with designers to improve UI with <strong>Ant Design</strong> and <strong>Tailwind CSS</strong>, and integrated Tableau dashboard for data visualization.",
+        "Led the website <strong>SEO enhancement solutions</strong>, and applied effective image scaling and <strong>Google Cloud CDN</strong> optimization. Achieved a 30% reduction in search and loading time spent.",
+        "Spearheaded the development of <strong>language model SDK</strong> with Python to host the language model online and locally.",
+        "Utilized <strong>llama.cpp</strong> to quantize language models on Ollama (Long Chain) to convert models to <strong>Q2 - F16 GGUF</strong> formats.",
+        "Applied <strong>LoRa (Keras)</strong> for fine-tuning the model to facilitate cross-application collaboration tasks.",
+        "Developed an application with <strong>Gradios</strong> to host the model, enabling direct interaction with the updated models and facilitating real-time feedback. Resulted in a 33% improvement in content generation quality and a 1.5% decrease in memory usage. The quantized models acquired 1521 overall downloads.",
+        "Developed a <strong>FastAPI platform</strong> using Python to facilitate integration between third-party LLMs and application APIs.",
+        "Engineered the mobile version of the platform using Java in <strong>Android Studio</strong>, developing essential utility class modules to enable a function-driven language model supporting on-device actions.",
       ],
     },
   ],
@@ -67,46 +69,98 @@ export const resumeData = {
       title:
         "Thumb up or head down? The impact of upvote on social media self-efficacy",
       authors: "Zhiyao Shu",
-      time: "Jan/2024",
       url: "https://www.semanticscholar.org/paper/Thumb-up-or-Head-down-The-Impact-of-Upvote-on-Media-Shu/f66ec116f3cdb29722a853bea5e6d8c93ec6009d",
       pdf: "ZhiyaoShu - Thumb up or head down The impact of upvote on social media self-efficacy.pdf",
       abstract: "",
     },
     {
       id: 2,
-      published: "CIKM 2024",
+      conference: "CIKM 2024",
+      published:"arXiv preprint arXiv:2407.03568",
       year: 2024,
       title:
         "When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks",
       authors: "Zhiyao Shu, Xiangguo Sun, Hong Cheng",
       month: 5,
-      pdf: "ZhiyaoShu - When LLM Meets Hypergraph A Sociological Analysis on Personality via Online Social Networks.pdf",
-      abstract: `Individual personalities significantly influence our perceptions, decisions, and social interactions, which is particularly crucial for gaining insights into human behavior patterns in online social network analysis. Many psychological studies have observed that personalities are strongly reflected in their social behaviors and social environments. Unfortunately, psychological traits like one's personality are high-level and hidden in the innermost corner of data, which is intractable to be uncovered by traditional data mining approaches; The data quality of online social networks is far from sufficient to support such profound psychological analysis, because user behavior records and their attributes are usually very fragmented, missing lots of key information to understand a person in depth; In addition, the social environments in online networks are very complicated, making the interaction patterns between users and their environments underexplored. 
-      In light of these problems, this paper proposes a sociological analysis framework for one's personality in an environment-based view instead of individual-level data mining. Specifically, to comprehensively understand an individual's behavior from low-quality records, we leverage the powerful associative ability of LLMs by designing an effective prompt. In this way, LLMs can integrate various scattered information with their external knowledge to generate higher-quality profiles, which can significantly improve the personality analysis performance. To explore the interactive mechanism behind the users and their online environments, we design an effective hypergraph neural network where the hypergraph nodes are users and the hyperedges in the hypergraph are social environments. We offer a useful dataset with user profile data, personality traits, and several detected environments from the real-world social platform. To the best of our knowledge, this is the first network-based dataset containing both hypergraph structure and social information, which could push forward future research in this area further. By employing the framework on this dataset, we can effectively capture the nuances of individual personalities and their online behaviors, leading to a deeper understanding of human interactions in the digital world.
-    `,
+      url: "https://arxiv.org/abs/2407.03568",
+      abstract: (
+        <>
+          Individual personalities significantly influence our perceptions,
+          decisions, and social interactions, which is particularly crucial for
+          gaining insights into human behavior patterns in online social network
+          analysis.
+          <br />
+          Many psychological studies have observed that personalities are
+          strongly reflected in their social behaviors and social environments.
+          <br />
+          <br />
+          Unfortunately, psychological traits like one's personality are
+          high-level and hidden in the innermost corner of data, which is
+          intractable to be uncovered by traditional data mining approaches.
+          <br />
+          The data quality of online social networks is far from sufficient to
+          support such profound psychological analysis, because user behavior
+          records and their attributes are usually very fragmented, missing lots
+          of key information to understand a person in depth.
+          <br />
+          In addition, the social environments in online networks are very
+          complicated, making the interaction patterns between users and their
+          environments underexplored.
+          <br />
+          <br />
+          In light of these problems, this paper proposes a sociological
+          analysis framework for one's personality in an environment-based view
+          instead of individual-level data mining.
+          <br />
+          Specifically, to comprehensively understand an individual's behavior
+          from low-quality records, we leverage the powerful associative ability
+          of LLMs by designing an effective prompt.
+          <br />
+          In this way, LLMs can integrate various scattered information with
+          their external knowledge to generate higher-quality profiles, which
+          can significantly improve the personality analysis performance.
+          <br />
+          <br />
+          To explore the interactive mechanism behind the users and their online
+          environments, we design an effective hypergraph neural network where
+          the hypergraph nodes are users and the hyperedges in the hypergraph
+          are social environments.
+          <br />
+          We offer a useful dataset with user profile data, personality traits,
+          and several detected environments from the real-world social platform.
+          <br />
+          To the best of our knowledge, this is the first network-based dataset
+          containing both hypergraph structure and social information, which
+          could push forward future research in this area further.
+          <br />
+          <br />
+          By employing the framework on this dataset, we can effectively capture
+          the nuances of individual personalities and their online behaviors,
+          leading to a deeper understanding of human interactions in the digital
+          world.
+        </>
+      ),
     },
-    {
-      id: 3,
-      published: "CHI 2024",
-      year: 2024,
-      title:
-        "MindCoder: An Ideation Tool for Inductive Qualitative Analysis with Large Language Models",
-      authors: "Jie Gao, ShunYi Yeo, Zhiyao Shu",
-      month: 9,
-      pdf: "",
-      url: "",
-      abstract: "",
-    },
-    {
-      id: 4,
-      published: "",
-      year: 2024,
-      month: 10,
-      title: "HAI texmony",
-      authors: "Jie Gao, Zhiyao Shu",
-      pdf: "",
-      url: "",
-      abstract: "",
-    },
+    // {
+    //   id: 3,
+    //   published: "CHI 2024",
+    //   year: 2024,
+    //   title:
+    //     "MindCoder: An Ideation Tool for Inductive Qualitative Analysis with Large Language Models",
+    //   authors: "Jie Gao, ShunYi Yeo, Zhiyao Shu",
+    //   month: 9,
+    //   url: "",
+    //   abstract: `Traditional qualitative analysis often requires substantial human effort and collaboration to achieve consensus through a formal coding process, involving open coding, discussions, and codebook merging. However, there are scenarios where such rigorous processes are not necessary. Situations requiring quick yet systematic insights, such as summarizing meetings or personal ideation, benefit from a more informal approach. To address these needs, we developed MindCoder, a tool inspired by the "Code-to-theory" model, designed to support informal inductive qualitative analysis for ideation and exploration. MindCoder allows users to transform unstructured qualitative data into various levels of insights, prioritizing efficiency, creativity, and flexibility. Through an iterative design process and expert feedback, we refined MindCoder to cater to contexts where rapid, informal analysis is preferred. Our evaluation with 12 participants demonstrates MindCoder's effectiveness in enabling users to perform qualitative analysis that is less formal but still structured and insightful.`,
+    // },
+    // {
+    //   id: 4,
+    //   published: "",
+    //   year: 2024,
+    //   month: 10,
+    //   title: "HAI texmony",
+    //   authors: "Jie Gao, Zhiyao Shu",
+    //   url: "",
+    //   abstract: "",
+    // },
   ],
 };
