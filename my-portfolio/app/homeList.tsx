@@ -20,7 +20,7 @@ export const projects = [
     date: "10/15/2023",
     url: "https://gist.github.com/ZhiyaoShu/c991e1e432656cec00f5bfce5b8ac5",
     image: ["/data/images/emotions.gif"],
-    tags: ["image recognition", "semantic analysis"],
+    tags: ["image recognition"],
     layout: "horizontal",
     isdirect: true,
     description: (

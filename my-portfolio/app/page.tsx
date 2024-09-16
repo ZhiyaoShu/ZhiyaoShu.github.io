@@ -93,13 +93,13 @@ export default function Page() {
                   className="hidden sm:block mx-4"
                   orientation="vertical"
                 />
-                <p>{renderTextWithLinks(item.text)}</p>
+                <p className="text-sm">{renderTextWithLinks(item.text)}</p>
               </div>
             ))}
         </div>
       </section>
       <section className="mb-8">
-        <h2 className="mb-4 text-xl font-semibold">Projects</h2>
+        <h2 className="mb-4 text-lg font-semibold">Projects</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           {allTags.map((tag) => (
             <Badge
@@ -150,7 +150,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
         <CardContent className="w-full sm:w-2/3 p-4 flex flex-col justify-between">
           <div>
-            <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
+            <h3 className="text-md font-semibold mb-2">{project.name}</h3>
             <div className="flex flex-wrap gap-2 mb-2">
               {(project.tags ?? []).map((tag) => (
                 <Badge key={tag} variant="secondary">
@@ -158,20 +158,20 @@ function ProjectCard({ project }: { project: Project }) {
                 </Badge>
               ))}
             </div>
-            <p className="text-sm text-gray-500 mb-4">{project.date}</p>
+            <p className="text-xs text-gray-500 my-3">{project.date}</p>
           </div>
 
           {/* Conditional rendering for Learn More button */}
           {project.isdirect && project.url ? (
             <a href={project.url} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="w-[30%] text-left gap-3">
+              <Button variant="outline" className="w-[28%] text-left gap-3 text-sm">
                 Learn More <ArrowIcon />
               </Button>
             </a>
           ) : (
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" className="w-[30%] text-left">
+                <Button variant="outline" className="w-[28%] text-left">
                   Learn More
                 </Button>
               </DialogTrigger>
