@@ -146,13 +146,17 @@ const Projects: React.FC = () => {
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            A self-motivated researcher and developer with expertise in machine
-            learning and natural language processing, passionate about advancing
-            Human-AI interactions. Previous research includes
-            large-scale social network data analysis, psychological analysis of
-            online behavior, and few-shot learning for classification tasks.
-            Committed to developing innovative solutions and pushing the
-            boundaries of cutting-edge technology.
+            My research goal is to develop methodologies for extracting
+            comprehensive information within dynamic contexts. Approaches
+            includes hierarchical classification, deductive analysis to convert
+            raw data into structured formats, and network generation to uncover
+            implicit relationships within intangible environments. Applications
+            includes alogrithms for urban-scale geo-localization,
+            personality-behvior analysis on social network, and tools for
+            qualitative data analysis. By advancing techniques for contextual
+            understanding. Through my research, I seek to contribute to
+            advancements in machine learning and AI, driving innovation in the
+            interpretation of vast, unstructured data.
           </p>
         </div>
       </div>

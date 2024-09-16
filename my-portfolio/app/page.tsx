@@ -71,6 +71,13 @@ export default function Page() {
         </h1>
         <p className="mb-4">
           A ML/Full-stack research engineer located at the Bay Area, CA.
+          <br />
+          With expertise in machine learning and natural language processing, T
+          am passionate about advancing Human-AI interactions. Previous research
+          includes large-scale social network data analysis, psychological
+          analysis of online behavior, and few-shot learning for classification.
+          Committed to developing innovative solutions and pushing the
+          boundaries of cutting-edge technology.
         </p>
         <div className="my-8"></div>
       </section>
@@ -164,7 +171,10 @@ function ProjectCard({ project }: { project: Project }) {
           {/* Conditional rendering for Learn More button */}
           {project.isdirect && project.url ? (
             <a href={project.url} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="w-[28%] text-left gap-3 text-sm">
+              <Button
+                variant="outline"
+                className="w-[28%] text-left gap-3 text-sm"
+              >
                 Learn More <ArrowIcon />
               </Button>
             </a>
@@ -198,7 +208,9 @@ function ProjectCard({ project }: { project: Project }) {
                   )}
                   <div
                     className={` ${
-                      project.layout === "horizontal" ? "flex-col min-w-[20vh]" : ""
+                      project.layout === "horizontal"
+                        ? "flex-col min-w-[20vh]"
+                        : ""
                     }`}
                   >
                     <DialogHeader>
