@@ -52,9 +52,11 @@ eagle.epf
 node_modules
 .env.local
 pnpm-lock.yaml
-package-lock.json
 *.json
 .gitignore
 *.bib
 *.mdx
+*.jpg
+*.png
+*.gif
 package-lock.json
