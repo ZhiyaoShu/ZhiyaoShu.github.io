@@ -5,7 +5,7 @@ const navItems = {
   "/": {
     name: "work",
   },
-  "/cv": {
+  "/research": {
     name: "cv",
   },
   "/contact": {

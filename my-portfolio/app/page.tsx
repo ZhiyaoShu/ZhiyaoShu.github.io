@@ -76,7 +76,7 @@ export default function Page() {
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-xl font-semibold">Recent News</h2>
+        <h2 className="mb-4 text-lg font-semibold">Recent News</h2>
         <div className="space-y-4">
           {newsItems
             .slice()
