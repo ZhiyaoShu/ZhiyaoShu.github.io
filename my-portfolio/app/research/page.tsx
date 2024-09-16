@@ -146,13 +146,13 @@ const Projects: React.FC = () => {
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            Once been a landscape/architecture designer, now I am a
-            self-motivated researcher and developer specializing in machine
-            learning and natural language processing. <br />
-            Passionate about machine learning and human-centered AI interaction.
-            Theory-driven application development, with expertise in
-            classification tasks and few-shot learning. Dedicated to exploring
-            innovative solutions and advancing cutting-edge technologies.
+            A self-motivated researcher and developer with expertise in machine
+            learning and natural language processing, passionate about advancing
+            Human-AI interactions. Previous research includes
+            large-scale social network data analysis, psychological analysis of
+            online behavior, and few-shot learning for classification tasks.
+            Committed to developing innovative solutions and pushing the
+            boundaries of cutting-edge technology.
           </p>
         </div>
       </div>
