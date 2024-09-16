@@ -39,3 +39,5 @@ next-env.d.ts
 *.mp4
 *.png
 .vercel
+*.pdf
+package-lock.json

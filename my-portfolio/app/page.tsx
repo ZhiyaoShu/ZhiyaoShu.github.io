@@ -99,7 +99,7 @@ export default function Page() {
         </div>
       </section>
       <section className="mb-8">
-        <h2 className="mb-4 text-xl font-semibold">Personal Projects</h2>
+        <h2 className="mb-4 text-xl font-semibold">Projects</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           {allTags.map((tag) => (
             <Badge

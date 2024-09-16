@@ -26,6 +26,7 @@ import {
 } from "@/app/components/dropdown-menu";
 import { useToast } from "@/app/components/use-toast";
 import { Badge } from "@/app/components/badge";
+import { FileText } from "lucide-react";
 
 type Publication = {
   id: number;
@@ -42,10 +43,8 @@ type Publication = {
 const formatCitation = (pub: Publication, format: "APA" | "MLA" | "BibTeX") => {
   const authors = pub.authors.replace(/, /g, ", ").replace(/& /g, " & ");
 
-  // 提取第一个作者的姓氏
   const firstAuthorLastName = pub.authors.split(",")[0].trim().split(" ").pop();
 
-  // 标题简写（例如，只取前三个单词或关键字）
   const titleKey = pub.title.split(" ").slice(0, 3).join("").toLowerCase();
 
   switch (format) {
@@ -158,10 +157,22 @@ const Projects: React.FC = () => {
         </div>
       </div>
       <Tabs defaultValue="experiences">
-        <TabsList className="mb-4">
-          <TabsTrigger value="experiences">Experiences</TabsTrigger>
-          <TabsTrigger value="publications">Publications</TabsTrigger>
-        </TabsList>
+        <div className="flex flex-col gap-3 justify-start items-start mb-4">
+          <TabsList className="flex flex-row">
+            <TabsTrigger value="experiences">Experiences</TabsTrigger>
+            <TabsTrigger value="publications">Publications</TabsTrigger>
+          </TabsList>
+          <Button variant="ghost" size="sm" asChild className="gap-2">
+            <a
+              href="/data/Zoey_Resume2024_v2.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FileText className="h-5 w-5 text-primary" />
+              View Resume (PDF)
+            </a>
+          </Button>
+        </div>
         <TabsContent value="experiences">
           {resumeData.experience.map((exp) => (
             <Card key={exp.id} className="mb-4">
