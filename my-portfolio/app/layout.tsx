@@ -9,7 +9,7 @@ import Footer from "./components/footer";
 import { Toaster } from "@/app/components/toaster";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leerob.io"),
+  metadataBase: new URL("https://localhost:3000"),
   title: {
     default: "Zoey's Portfolio",
     template: "%s | Zoey Shu",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zoey's Portfolio",
     description: "Developer, AI researcher.",
-    url: "https://leerob.io",
+    url: "https://localhost:3000",
     siteName: "Zoey's Portfolio",
     locale: "en_US",
     type: "website",
@@ -33,10 +33,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  twitter: {
-    title: "Lee Robinson",
-    card: "summary_large_image",
   },
 };
 
@@ -57,7 +53,7 @@ export default function RootLayout({
         GeistMono.variable
       )}
     >
-      <body className="antialiased overflow-x-hidden items-center flex flex-col g:mx-auto min-h-screen">
+      <body className="antialiased overflow-x-hidden items-center flex flex-col lg:mx-auto min-h-screen">
         <main className="flex-auto min-w-0 max-w-3xl justify-start mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
