@@ -1,9 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { GetServerSideProps } from "next";
 
-export default async function getServerSideProps(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = "https://localhost:3000";
   const pages = ["/", "/cv", "/contact"];
 
@@ -23,4 +20,8 @@ export default async function getServerSideProps(
   return {
     props: {},
   };
+};
+
+export default function Sitemap() {
+  return null;
 }
