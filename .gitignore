@@ -60,3 +60,4 @@ pnpm-lock.yaml
 *.png
 *.gif
 package-lock.json
+.env
