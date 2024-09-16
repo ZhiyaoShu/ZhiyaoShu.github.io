@@ -77,7 +77,7 @@ export const projects = [
     date: "9/15/2024",
     layout: "horizontal",
     tags: ["full-stack", "LLM", "qualitative data analysis", "HAI"],
-    image: ["/data/images/mindcoderIcon.svg", "/data/images/mindcoder.svg"],
+    image: ["/mindcoderIcon.svg", "/data/images/mindcoder.svg"],
   },
 
   // {
