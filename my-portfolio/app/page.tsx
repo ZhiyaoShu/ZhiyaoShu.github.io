@@ -72,7 +72,7 @@ export default function Page() {
         <p className="mb-4">
           A ML/Full-stack research engineer located at the Bay Area, CA.
           <br />
-          With expertise in machine learning and natural language processing, T
+          With expertise in machine learning and natural language processing, I
           am passionate about advancing Human-AI interactions. Previous research
           includes large-scale social network data analysis, psychological
           analysis of online behavior, and few-shot learning for classification.
