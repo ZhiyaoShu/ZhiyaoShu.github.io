@@ -147,16 +147,18 @@ const Projects: React.FC = () => {
         <div className="flex-grow">
           <p className="text-muted-foreground">
             My research goal is to develop methodologies for extracting
-            comprehensive information within dynamic contexts. Approaches
-            includes hierarchical classification, deductive analysis to convert
-            raw data into structured formats, and network generation to uncover
-            implicit relationships within intangible environments. Applications
-            includes alogrithms for urban-scale geo-localization,
-            personality-behvior analysis on social network, and tools for
-            qualitative data analysis. By advancing techniques for contextual
-            understanding. Through my research, I seek to contribute to
-            advancements in machine learning and AI, driving innovation in the
-            interpretation of vast, unstructured data.
+            comprehensive information within dynamic contexts. <br />
+            <br />
+            Approaches includes hierarchical classification, deductive analysis
+            to convert raw data into structured formats, and network generation
+            to uncover implicit relationships within intangible environments. I
+            am also interested in applications includes alogrithms for
+            urban-scale image classification, personality-behavior analysis on
+            social network, and tools for qualitative data analysis. <br />
+            <br />
+            Through my research, I seek to contribute to advancements in machine
+            learning and AI, driving innovation in the interpretation of vast,
+            unstructured data.
           </p>
         </div>
       </div>
