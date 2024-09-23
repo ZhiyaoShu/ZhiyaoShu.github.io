@@ -63,7 +63,7 @@ export const projects = [
       "social network",
     ],
     isdirect: false,
-    url: "https://arxiv.org/abs/2407.03568",
+    url: "https://github.com/ZhiyaoShu/LLM-HGNN-MB",
     image: ["/data/images/llm&hgn.jpg", "/data/images/llm_framework.jpg"],
     layout: "vertical",
     description:
