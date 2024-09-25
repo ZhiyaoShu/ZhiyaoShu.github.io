@@ -1,4 +1,6 @@
+''
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/app/components/button";
 import { Input } from "@/app/components/input";
 import { Label } from "@/app/components/label";
@@ -7,8 +9,6 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/app/components/card";
 import { AlertCircle } from "lucide-react";
 
@@ -16,11 +16,21 @@ export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [apiKey, setApiKey] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the login and API key validation
-    console.log("Login attempt", { username, password, apiKey });
+
+    // Simulate an API call
+    setLoading(true);
+    setTimeout(() => {
+      console.log("Login successful", { username, password, apiKey });
+      setLoading(false);
+      // Redirect to the report page after "successful login"
+      navigate("/report");
+    }, 1000); // Simulate a 1-second delay for the API call
+
     // Reset form fields after submission
     setUsername("");
     setPassword("");
@@ -30,8 +40,8 @@ export function LoginForm() {
   return (
     <Card className="w-full mx-auto mt-8 border-0 shadow-none">
       <CardDescription className="pb-6">
-        Login with your to access the research interface
-        </CardDescription>
+        Login with your Zotero account to access the research interface
+      </CardDescription>
       <CardContent className="px-0 flex">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
