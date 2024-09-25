@@ -65,7 +65,7 @@ const mockArticles: Article[] = [
   }
 ]
 
-export function BlogPageComponent() {
+const BlogPageComponent: React.FC = () =>{
   const [articles, setArticles] = useState<Article[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [sortOrder, setSortOrder] = useState<'recent' | 'oldest'>('recent')
@@ -141,7 +141,7 @@ export function BlogPageComponent() {
               <Badge key={tag} variant="secondary">{tag}</Badge>
             ))}
           </div>
-          <p className="text-sm text-gray-500">Read time: {article.readTime} minutes</p>
+          <p className="text-sm text-gray-500">Estimate read time: {article.readTime} minutes</p>
         </div>
       ))}
     </div>
@@ -199,3 +199,5 @@ export function BlogPageComponent() {
     </div>
   )
 }
+
+export default BlogPageComponent
