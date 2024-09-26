@@ -10,6 +10,7 @@ const initialNodes = [
   { id: "2", position: { x: 0, y: 100 }, data: { label: "2" } },
 ];
 const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
+const navigate = useNavigate();
 
 export default function Zotero() {
   return (
