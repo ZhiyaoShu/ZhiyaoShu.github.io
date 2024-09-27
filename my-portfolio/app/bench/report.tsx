@@ -33,7 +33,7 @@ type Paper = {
   journal: string
 }
 
-export function ResearchAssistantComponent() {
+export function Report() {
   const [keywords, setKeywords] = useState<string[]>(['machine learning', 'natural language processing'])
   const [summary, setSummary] = useState<string>("Recent research has focused on advances in transformer models and their applications in various domains.")
   const [newKeyword, setNewKeyword] = useState<string>('')
