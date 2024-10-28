@@ -73,11 +73,14 @@ export default function Page() {
           A ML/Full-stack research engineer located at the Bay Area, CA.
           <br />
           With expertise in machine learning and natural language processing, I
-          am passionate about advancing Human-AI interactions. Previous research
-          includes large-scale social network data analysis, psychological
-          analysis of online behavior, and few-shot learning for classification.
-          Committed to developing innovative solutions and pushing the
-          boundaries of cutting-edge technology.
+          am passionate about advancing practical Human-LLM interactions,
+          multimodal information undserstanding with natrual language
+          processing.
+          <br />
+          Previous research includes large-scale social network data analysis,
+          psychological analysis of online behavior, and few-shot learning for
+          classification. Committed to developing innovative solutions and
+          pushing the boundaries of cutting-edge technology.
         </p>
         <div className="my-8"></div>
       </section>

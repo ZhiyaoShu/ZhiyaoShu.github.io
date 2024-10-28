@@ -9,3 +9,16 @@ class Papers(BaseModel):
     abstract: str
     date: datetime.date
 
+    @staticmethod
+    def get_papers():
+        papers = []
+        for i in range(1, 11):
+            paper = Papers(
+                id=i,
+                title=f"Paper {i}",
+                authors=[f"Author {i}"],
+                abstract=f"Abstract {i}",
+                date=datetime.date.today()
+            )
+            papers.append(paper)
+        return papers
