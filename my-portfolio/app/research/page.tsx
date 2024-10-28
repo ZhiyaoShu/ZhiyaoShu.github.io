@@ -146,16 +146,16 @@ const Projects: React.FC = () => {
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            My research goal is to develop an end-to-end AI-leveraged application for
-            comprehending multimodal information within natural language
-            instructions.
+            My research goal is to develop an end-to-end AI-leveraged
+            application for comprehending multimodal information within natural
+            language instructions.
             <br />
             Approaches includes designing hierarchical structures to organize
             information, enabling inference through iterative interactions with
             users, and integrating advanced visual understanding.
-            <br />
-            I aim to enhance model alignment with human inference and
-            comprehension capabilities through interacting with dynamic world(data).
+            <br />I aim to enhance model alignment with human inference and
+            comprehension capabilities through interacting with dynamic
+            world(data).
           </p>
         </div>
       </div>
@@ -167,12 +167,12 @@ const Projects: React.FC = () => {
           </TabsList>
           <Button variant="ghost" size="sm" asChild className="gap-2">
             <a
-              href="/data/Zoey_Resume2024_v2.pdf"
+              href="/data/Zoey_CV2024.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FileText className="h-5 w-5 text-primary" />
-              View Resume (PDF)
+              View PDF
             </a>
           </Button>
         </div>

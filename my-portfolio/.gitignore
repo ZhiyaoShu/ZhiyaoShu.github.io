@@ -35,9 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-*.pdf
+
 *.mp4
 *.png
 .vercel
-*.pdf
 package-lock.json
