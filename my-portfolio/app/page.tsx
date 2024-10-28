@@ -82,6 +82,8 @@ export default function Page() {
           classification. Committed to developing innovative solutions and
           pushing the boundaries of cutting-edge technology.
         </p>
+        <br />
+        I am actively looking for PhD research opportunities. Please feel free to reach out to me if you think my research aligns with your interests.
         <div className="my-8"></div>
       </section>
 
