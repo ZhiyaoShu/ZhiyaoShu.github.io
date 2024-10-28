@@ -4,7 +4,19 @@ export const newsItems = [
   {
     id: 1,
     date: "2024-05-20",
-    text: `Accepted by CIKM 2024! Check out new paper at  https://arxiv.org/abs/2407.03568`,
+    text: (
+      <>
+        Accepted by CIKM 2024! Check out new paper{" "}
+        <a
+          href="https://dl.acm.org/doi/10.1145/3627673.3679646"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          here
+        </a>
+        !
+      </>
+    ),
   },
   {
     id: 2,
