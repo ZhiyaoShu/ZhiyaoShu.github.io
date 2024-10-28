@@ -11,6 +11,11 @@ export const newsItems = [
     date: "2024-09-12",
     text: `Released! MindCoder for deductive qualitative data analysis! Check our website at https://mindcoder.ai/`,
   },
+  {
+    id: 3,
+    date: "2024-10-22",
+    text: `Very glad to make presentation and connect with awsome researchers at CIKM 2024!`,
+  },
 ];
 
 export const projects = [
