@@ -106,7 +106,9 @@ export default function Page() {
                   className="hidden sm:block mx-4"
                   orientation="vertical"
                 />
-                <p className="text-sm">{item.text}</p>
+                <p className="text-sm">
+                  <>{item.text}</>
+                </p>
               </div>
             ))}
         </div>
