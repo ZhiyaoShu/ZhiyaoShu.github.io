@@ -146,7 +146,7 @@ const Projects: React.FC = () => {
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            My research goal is to develop an end-to-end application for
+            My research goal is to develop an end-to-end AI-leveraged application for
             comprehending multimodal information within natural language
             instructions.
             <br />
