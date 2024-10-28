@@ -82,8 +82,9 @@ export default function Page() {
           classification. Committed to developing innovative solutions and
           pushing the boundaries of cutting-edge technology.
         </p>
-        <br />
-        I am actively looking for PhD research opportunities. Please feel free to reach out to me if you think my research aligns with your interests.
+        <br />I am actively looking for PhD research opportunities. Please feel
+        free to reach out to me if you think my research aligns with your
+        interests.
         <div className="my-8"></div>
       </section>
 
@@ -96,7 +97,7 @@ export default function Page() {
             .map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col sm:flex-row text-wrap "
+                className="flex flex-col sm:flex-row text-wrap"
               >
                 <span className="text-sm text-gray-500 min-w-[100px] mb-1 sm:mb-0">
                   {item.date}
@@ -105,11 +106,12 @@ export default function Page() {
                   className="hidden sm:block mx-4"
                   orientation="vertical"
                 />
-                <p className="text-sm">{renderTextWithLinks(item.text)}</p>
+                <p className="text-sm">{item.text}</p>
               </div>
             ))}
         </div>
       </section>
+
       <section className="mb-8">
         <h2 className="mb-4 text-lg font-semibold">Projects</h2>
         <div className="flex flex-wrap gap-2 mb-4">

@@ -1,32 +1,49 @@
-import { url } from "inspector";
+type NewsItem = {
+  id: number;
+  date: string;
+  text: React.ReactNode;
+};
 
-export const newsItems = [
+export const newsItems: NewsItem[] = [
   {
     id: 1,
     date: "2024-05-20",
     text: (
       <>
-        Accepted by CIKM 2024! Check out new paper{" "}
+        Accepted by CIKM 2024! Check out our new paper{" "}
         <a
-          href="https://dl.acm.org/doi/10.1145/3627673.3679646"
+          href="https://arxiv.org/abs/2407.03568"
           target="_blank"
           rel="noopener noreferrer"
+          className="underline font-semibold text-gray-600"
         >
           here
         </a>
-        !
       </>
     ),
   },
   {
     id: 2,
     date: "2024-09-12",
-    text: `Released! MindCoder for deductive qualitative data analysis! Check our website at https://mindcoder.ai/`,
+    text: (
+      <>
+        Released! MindCoder for deductive qualitative data analysis! Check our
+        website at{" "}
+        <a
+          href="https://mindcoder.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline font-semibold text-gray-600"
+        >
+          mindcoder.ai
+        </a>
+      </>
+    ),
   },
   {
     id: 3,
     date: "2024-10-22",
-    text: `Very glad to make presentation and connect with awsome researchers at CIKM 2024!`,
+    text: `Very glad to make presentation and connect with awesome researchers at CIKM 2024!`,
   },
 ];
 
