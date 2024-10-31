@@ -72,17 +72,17 @@ export default function Page() {
         <p className="mb-4">
           A ML/Full-stack research engineer located at the Bay Area, CA.
           <br />
-          With expertise in machine learning and natural language processing, I
-          am passionate about advancing practical Human-LLM interactions,
-          multimodal information undserstanding with natrual language
-          processing.
+          With expertise in machine learning, I am passionate about advancing
+          inference capcabilities through Human-AI interactions (with natural languages), and multi-modal
+          information undserstanding with semi-supervised/incremental learning process.
           <br />
           Previous research includes large-scale social network data analysis,
-          psychological analysis of online behavior, and few-shot learning for
+          psychological analysis of online behavior, and few-shot image recognition and
           classification. Committed to developing innovative solutions and
           pushing the boundaries of cutting-edge technology.
         </p>
-        <br />I am actively looking for PhD or research engineer opportunities. Please reach out to me if you think my research aligns with your
+        <br />I am actively looking for PhD or research engineer opportunities.
+        Please reach out to me if you think my research aligns with your
         interests.
         <div className="my-8"></div>
       </section>

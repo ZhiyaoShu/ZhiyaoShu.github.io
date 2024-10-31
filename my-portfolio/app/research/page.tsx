@@ -146,16 +146,17 @@ const Projects: React.FC = () => {
         </Avatar>
         <div className="flex-grow">
           <p className="text-muted-foreground">
-            My research goal is to develop an end-to-end AI-leveraged
-            application for comprehending multimodal information within natural
-            language instructions.
-            <br />
-            Approaches includes designing hierarchical structures to organize
-            information, enabling inference through iterative interactions with
-            users, and integrating advanced visual understanding.
-            <br />I aim to enhance model alignment with human inference and
-            comprehension capabilities through interacting with dynamic
-            world(data).
+            My background in environmental and architectural studies at UC
+            Berkeley deeply shaped my understanding of complex, dynamic
+            relationships between humans, systems, and environments.
+            Through this lens, I explored how machines(buildings) can be
+            thoughtfully integrated to systematically support and optimize human needs. This foundation continues to
+            develop my current work in computer science, where I focus on
+            simulating human behavior and thought processes through deep
+            learning. Leveraging these insights, I am working to enhance machine
+            capabilities in understanding and reasoning about contextual states
+            and changes—capturing nuances of human experience in ways machines
+            cannot directly perceive.
           </p>
         </div>
       </div>
