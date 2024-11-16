@@ -145,13 +145,18 @@ const Projects: React.FC = () => {
         humans, systems, and environments, and improved my techniques of
         developing informative graphics to tell stories. This foundation
         continues to shape my current research in machine learning, where I
-        focus on sensemaking and simulating human cognitive reasoning processes to
-        allow AI understand complex linguistic, semantic narratives across
+        focus on sensemaking and simulating human cognitive reasoning processes
+        to allow AI understand complex linguistic, semantic narratives across
         modalities. Leveraging these insights, I am passionate about developing
         interpretable and interactive systems that can capture nuances of
         experience in ways machines cannot directly perceive.
       </p>
-      <Button variant="ghost" size="sm" asChild className="gap-2 mb-4">
+      <Button
+        variant="ghost"
+        size="sm"
+        asChild
+        className="gap-2 pl-0 mb-4 hover:bg-white"
+      >
         <a
           href="/data/Zoey_CV2024.pdf"
           target="_blank"
