@@ -52,7 +52,7 @@ export const projects = [
     id: 1,
     name: "Facial Emotion Recognition",
     date: "10/15/2023",
-    url: "https://gist.github.com/ZhiyaoShu/c991e1e432656cec00f5bfce5b8ac5",
+    url: "https://gist.github.com/ZhiyaoShu/c991e1e432656cec00f5bfce5b8ac5ea",
     image: ["/data/images/emotions.gif"],
     tags: ["image recognition"],
     layout: "horizontal",
