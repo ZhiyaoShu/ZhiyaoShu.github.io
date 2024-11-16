@@ -27,8 +27,8 @@ export const newsItems: NewsItem[] = [
     date: "2024-09-12",
     text: (
       <>
-        Released! MindCoder for deductive qualitative data analysis! Check our
-        website at{" "}
+        Released! MindCoder for inductive qualitative data analysis! Try our
+        tool at{" "}
         <a
           href="https://mindcoder.ai/"
           target="_blank"

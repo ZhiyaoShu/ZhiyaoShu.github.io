@@ -15,6 +15,7 @@ import { Button } from "@/app/components/button";
 import { Separator } from "@/app/components/separator";
 import { projects, newsItems } from "./homeList";
 import { ArrowIcon } from "@/app/components/icons";
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/avatar";
 
 // Define the Project type
 type Project = {
@@ -69,18 +70,26 @@ export default function Page() {
         <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
           Hello, I am Zoey Shu
         </h1>
-        <p className="mb-4">
-          A ML/Full-stack research engineer located at the Bay Area, CA.
-          <br />
-          With expertise in machine learning, I am passionate about advancing
-          inference capcabilities through Human-AI interactions (with natural languages), and multi-modal
-          information undserstanding with semi-supervised/incremental learning process.
-          <br />
-          Previous research includes large-scale social network data analysis,
-          psychological analysis of online behavior, and few-shot image recognition and
-          classification. Committed to developing innovative solutions and
-          pushing the boundaries of cutting-edge technology.
-        </p>
+        <div className="flex items-center gap-8 mb-12">
+          <Avatar className="w-40 h-40 flex-shrink-0">
+            <AvatarImage src="/data/images/avatar.jpg" alt="Profile" />
+            <AvatarFallback>CV</AvatarFallback>
+          </Avatar>
+          <p className="mb-4">
+            A ML/Full-stack research engineer located at the Bay Area, CA.
+            <br />
+            With an expertise in machine learning, I am passionate about
+            advancing reasoning capcabilities through Human-AI interactions
+            (with natural languages), and multi-modal information undserstanding
+            with weak-supervised and incremental learning process.
+            <br />
+            My previous research includes interactive LLM-powered applications
+            for qualitative data analysis, personality analysis of online
+            social networks, and large-scale images recognition and classification. I
+            am committed to developing innovative solutions to enhance AI's
+            reasoning abilities aligning human reasoning processes.
+          </p>
+        </div>
         <br />I am actively looking for PhD or research engineer opportunities.
         Please reach out to me if you think my research aligns with your
         interests.

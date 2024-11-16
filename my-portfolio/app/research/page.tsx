@@ -16,7 +16,6 @@ import {
   CardTitle,
 } from "@/app/components/card";
 import { Button } from "@/app/components/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/avatar";
 import { ChevronDown, ChevronUp, School, Factory } from "lucide-react";
 import {
   DropdownMenu,
@@ -139,43 +138,35 @@ const Projects: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 items-center justify-center">
-      <div className="flex items-center gap-8 mb-12">
-        <Avatar className="w-40 h-40 flex-shrink-0">
-          <AvatarImage src="/data/images/avatar.jpg" alt="Profile" />
-          <AvatarFallback>CV</AvatarFallback>
-        </Avatar>
-        <div className="flex-grow">
-          <p className="text-muted-foreground">
-            My background in environmental and architectural studies at UC
-            Berkeley deeply shaped my understanding of complex, dynamic
-            relationships between humans, systems, and environments.
-            Through this lens, I explored how machines(buildings) can be
-            thoughtfully integrated to systematically support and optimize human needs. This foundation continues to
-            develop my current work in computer science, where I focus on
-            simulating human behavior and thought processes through deep
-            learning. Leveraging these insights, I am working to enhance machine
-            capabilities in understanding and reasoning about contextual states
-            and changes—capturing nuances of human experience in ways machines
-            cannot directly perceive.
-          </p>
-        </div>
-      </div>
+      <h1 className="mb-4 text-2xl font-semibold tracking-tighter">About</h1>
+      <p className="text-muted-foreground mb-4">
+        My background in environmental and architectural design at UC Berkeley
+        deeply shaped my understanding of complex, dynamic relationships between
+        humans, systems, and environments, and improved my techniques of
+        developing informative graphics to tell stories. This foundation
+        continues to shape my current research in machine learning, where I
+        focus on sensemaking and simulating human cognitive reasoning processes to
+        allow AI understand complex linguistic, semantic narratives across
+        modalities. Leveraging these insights, I am passionate about developing
+        interpretable and interactive systems that can capture nuances of
+        experience in ways machines cannot directly perceive.
+      </p>
+      <Button variant="ghost" size="sm" asChild className="gap-2 mb-4">
+        <a
+          href="/data/Zoey_CV2024.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FileText className="h-5 w-5 text-primary" />
+          View CV PDF
+        </a>
+      </Button>
       <Tabs defaultValue="experiences">
         <div className="flex flex-col gap-3 justify-start items-start mb-4">
           <TabsList className="flex flex-row">
             <TabsTrigger value="experiences">Experiences</TabsTrigger>
             <TabsTrigger value="publications">Publications</TabsTrigger>
           </TabsList>
-          <Button variant="ghost" size="sm" asChild className="gap-2">
-            <a
-              href="/data/Zoey_CV2024.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FileText className="h-5 w-5 text-primary" />
-              View PDF
-            </a>
-          </Button>
         </div>
         <TabsContent value="experiences">
           {resumeData.experience.map((exp) => (
