@@ -142,7 +142,7 @@ const Projects: React.FC = () => {
       <p className="text-muted-foreground mb-4">
         My background in environmental and architectural design at UC Berkeley
         deeply shaped my understanding of complex, dynamic relationships between
-        humans, systems, and environments, and improved my techniques of
+        humans, systems, and environments. This experience also improved my techniques of
         developing informative graphics to tell stories. This foundation
         continues to shape my current research in machine learning, where I
         focus on sensemaking and simulating human cognitive reasoning processes
