@@ -12,7 +12,7 @@ export const newsItems: NewsItem[] = [
       <>
         Accepted by CIKM 2024! Check out our new paper{" "}
         <a
-          href="https://arxiv.org/abs/2407.03568"
+          href="https://dl.acm.org/doi/abs/10.1145/3627673.3679646"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-semibold text-gray-600"
