@@ -79,15 +79,15 @@ export default function Page() {
             A ML/Full-stack research engineer located at the Bay Area, CA.
             <br />
             With an expertise in machine learning, I am passionate about
-            advancing reasoning capcabilities through Human-AI interactions
-            (with natural languages), and multi-modal information undserstanding
-            with weak-supervised and incremental learning process.
+            advancing understanding capcabilities through multi-modal
+            information, and explictly representing leanred knowledge for
+            interpretable and expalinable reasoning processes.
             <br />
             My previous research includes interactive LLM-powered applications
-            for qualitative data analysis, personality analysis of online
-            social networks, and large-scale images recognition and classification. I
-            am committed to developing innovative solutions to enhance AI's
-            reasoning abilities aligning human reasoning processes.
+            supporting inductive reasoning qualitative analysis and large-scale
+            vision representation classification. I am committed to developing
+            innovative solutions to enhance AI's reasoning abilities aligning
+            human reasoning processes.
           </p>
         </div>
         <br />I am actively looking for PhD or research engineer opportunities.
