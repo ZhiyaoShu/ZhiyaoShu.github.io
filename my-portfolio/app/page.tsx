@@ -78,10 +78,10 @@ export default function Page() {
           <p className="mb-4">
             A ML/Full-stack research engineer located at the Bay Area, CA.
             <br />
-            With an expertise in machine learning, I am passionate about
-            advancing understanding capcabilities through multi-modal
-            information, and explictly representing leanred knowledge for
-            interpretable and expalinable reasoning processes.
+            With expertise in machine learning, I am passionate about advancing
+            understanding capabilities through multimodal information and
+            explicitly representing learned knowledge for interpretable and
+            explainable reasoning processes.
             <br />
             My previous research includes interactive LLM-powered applications
             supporting inductive reasoning qualitative analysis and large-scale
