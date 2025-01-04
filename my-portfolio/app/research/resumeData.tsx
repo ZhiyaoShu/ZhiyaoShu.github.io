@@ -141,22 +141,22 @@ export const resumeData = {
         </>
       ),
     },
-    // {
-    //   id: 3,
-    //   published: "CHI 2024",
-    //   year: 2024,
-    //   title:
-    //     "MindCoder: An Ideation Tool for Inductive Qualitative Analysis with Large Language Models",
-    //   authors: "Jie Gao, ShunYi Yeo, Zhiyao Shu",
-    //   month: 9,
-    //   url: "",
-    //   abstract: `Traditional qualitative analysis often requires substantial human effort and collaboration to achieve consensus through a formal coding process, involving open coding, discussions, and codebook merging. However, there are scenarios where such rigorous processes are not necessary. Situations requiring quick yet systematic insights, such as summarizing meetings or personal ideation, benefit from a more informal approach. To address these needs, we developed MindCoder, a tool inspired by the "Code-to-theory" model, designed to support informal inductive qualitative analysis for ideation and exploration. MindCoder allows users to transform unstructured qualitative data into various levels of insights, prioritizing efficiency, creativity, and flexibility. Through an iterative design process and expert feedback, we refined MindCoder to cater to contexts where rapid, informal analysis is preferred. Our evaluation with 12 participants demonstrates MindCoder's effectiveness in enabling users to perform qualitative analysis that is less formal but still structured and insightful.`,
-    // },
+    {
+      id: 3,
+      published: "arXiv",
+      year: 2025,
+      title:
+        "MindCoder: An Ideation Tool for Inductive Qualitative Analysis with Large Language Models",
+      authors: "Jie Gao, Zhiyao Shu, ShunYi Yeo",
+      month: 1,
+      url: "https://arxiv.org/pdf/2501.00775",
+      abstract: ` Traditional qualitative analysis requires significant effort and collaboration to achieve consensus through formal coding processes, including open coding, discussions, and codebook merging. However, in scenarios where such rigorous and time-intensive methods are unnecessary-such as summarizing meetings or personal ideation-quick yet structual insights are more practical. To address this need, we proposed MindCoder, a tool inspired by the "Codes-to-theory" model and developed through an iterative design process to support flexible and structural inductive qualitative analysis. With OpenAI's GPT-4o model, MindCoder supports data preprocessing, automatic open coding, automatic axial coding, and automatic concept development, ultimately presenting a report to support insights presentation. An evaluation with 12 participants highlights its effectiveness in enabling flexible yet structured analysis and its advantages over ChatGPT and Atlas.ti Web AI coding function.`,
+    },
     // {
     //   id: 4,
     //   published: "",
-    //   year: 2024,
-    //   month: 10,
+    //   year: 2025,
+    //   month: 1,
     //   title: "HAI texmony",
     //   authors: "Jie Gao, Zhiyao Shu",
     //   url: "",

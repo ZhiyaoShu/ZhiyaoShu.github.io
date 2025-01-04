@@ -107,7 +107,7 @@ export const projects = [
     id: 3,
     name: "Using Large Language Model to Support Flexible and Structural Inductive Qualitative Analysis",
     isdirect: true,
-    url: "https://arxiv.org/pdf/2501.00775",
+    url: "https://mindcoder.ai/",
     date: "1/2/2025",
     layout: "horizontal",
     tags: ["full-stack", "LLM", "qualitative data analysis", "HAI"],
