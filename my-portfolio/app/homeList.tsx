@@ -105,10 +105,10 @@ export const projects = [
   },
   {
     id: 3,
-    name: "MindCoder AI",
+    name: "Using Large Language Model to Support Flexible and Structural Inductive Qualitative Analysis",
     isdirect: true,
-    url: "https://mindcoder.ai/",
-    date: "9/15/2024",
+    url: "https://arxiv.org/pdf/2501.00775",
+    date: "1/2/2025",
     layout: "horizontal",
     tags: ["full-stack", "LLM", "qualitative data analysis", "HAI"],
     image: ["/mindcoderIcon.svg", "/data/images/mindcoder.svg"],
