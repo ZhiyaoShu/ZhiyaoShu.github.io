@@ -63,3 +63,6 @@ package-lock.json
 .env
 *.xml
 *.txt
+*.iml
+*.log
+*.log.*
