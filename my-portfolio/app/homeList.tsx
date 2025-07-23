@@ -24,13 +24,18 @@ export const newsItems: NewsItem[] = [
   },
   {
     id: 2,
-    date: "2024-09-12",
+    date: "2024-10-22",
+    text: `Very glad to make presentation and connect with awesome researchers at CIKM 2024!`,
+  },
+  {
+    id: 3,
+    date: "2025-03-15",
     text: (
       <>
-        Released! MindCoder for inductive qualitative data analysis! Try our
+        Released MindCoder v2! Generate full reports with one-click! Try our
         tool at{" "}
         <a
-          href="https://mindcoder.ai/"
+          href="https://mind-coder-frontend.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-semibold text-gray-600"
@@ -39,11 +44,6 @@ export const newsItems: NewsItem[] = [
         </a>
       </>
     ),
-  },
-  {
-    id: 3,
-    date: "2024-10-22",
-    text: `Very glad to make presentation and connect with awesome researchers at CIKM 2024!`,
   },
 ];
 
@@ -107,10 +107,10 @@ export const projects = [
     id: 3,
     name: "Using Large Language Model to Support Flexible and Structural Inductive Qualitative Analysis",
     isdirect: true,
-    url: "https://mindcoder.ai/",
-    date: "1/2/2025",
+    url: "https://mind-coder-frontend.vercel.app/",
+    date: "4/2025",
     layout: "horizontal",
-    tags: ["full-stack", "LLM", "qualitative data analysis", "HAI"],
+    tags: ["full-stack", "LLM", "chain-of-thought", "HAI"],
     image: ["/mindcoderIcon.svg", "/data/images/mindcoder.svg"],
   },
 

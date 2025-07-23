@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 
 interface BackToTopProps {
   visibilityHeight?: number;
