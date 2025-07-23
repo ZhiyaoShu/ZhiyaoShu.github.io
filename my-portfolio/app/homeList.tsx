@@ -24,13 +24,18 @@ export const newsItems: NewsItem[] = [
   },
   {
     id: 2,
-    date: "2024-09-12",
+    date: "2024-10-22",
+    text: `Very glad to make presentation and connect with awesome researchers at CIKM 2024!`,
+  },
+  {
+    id: 3,
+    date: "2025-03-15",
     text: (
       <>
-        Released! MindCoder for inductive qualitative data analysis! Try our
+        Released MindCoder v2! Generate full reports with one-click! Try our
         tool at{" "}
         <a
-          href="https://mindcoder.ai/"
+          href="https://mind-coder-frontend.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-semibold text-gray-600"
@@ -39,11 +44,6 @@ export const newsItems: NewsItem[] = [
         </a>
       </>
     ),
-  },
-  {
-    id: 3,
-    date: "2024-10-22",
-    text: `Very glad to make presentation and connect with awesome researchers at CIKM 2024!`,
   },
 ];
 

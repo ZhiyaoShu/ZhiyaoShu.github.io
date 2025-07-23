@@ -1,5 +1,5 @@
 import { ContactForm } from "./ContactForm";
-import { ArrowIcon } from "../components/icons";
+import { ArrowIcon } from "../components/ui/icons";
 
 export default function Contact() {
   return (
@@ -22,7 +22,7 @@ export default function Contact() {
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="mailto:yaoshu0326@berkeley.edu"
+            href="mailto:zshu2@gmu.edu"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">Email</p>
@@ -53,7 +53,8 @@ export default function Contact() {
       </ul>
       <p>
         Thanks for your time to visit my website. If you have any question or
-        want to connect, feel free to reach out to me via email or leave me a message.
+        want to connect, feel free to reach out to me via email or leave me a
+        message:
       </p>
       <ContactForm />
     </div>

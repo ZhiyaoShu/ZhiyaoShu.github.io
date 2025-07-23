@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button } from "@/app/components/button";
-import { Input } from "@/app/components/input";
-import { Label } from "@/app/components/label";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/app/components/card";
+} from "@/app/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
 export function LoginForm() {
@@ -30,8 +30,8 @@ export function LoginForm() {
   return (
     <Card className="w-full mx-auto mt-8 border-0 shadow-none">
       <CardDescription className="pb-6">
-        Login with your to access the research interface
-        </CardDescription>
+        Login with your Zotero account to access the research interface
+      </CardDescription>
       <CardContent className="px-0 flex">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowIcon } from "../components/icons";
+import { ArrowIcon } from "./ui/icons";
+import { ProjectsDrawer } from "@/app/projects/ProjectsDrawer";
 
 const navItems = {
   "/": {
@@ -8,11 +9,14 @@ const navItems = {
   "/research": {
     name: "cv",
   },
-  "/contact": {
-    name: "contact",
-  },
-  // "/zotero": {
+  // "/contact": {
+  //   name: "contact",
+  // },
+  // "/bench": {
   //   name: "bench",
+  // },
+  // "/blog": {
+  //   name: "blog",
   // },
 };
 
@@ -54,6 +58,7 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <ProjectsDrawer />
           </div>
         </nav>
       </div>

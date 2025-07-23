@@ -31,7 +31,7 @@ export const resumeData = {
       title: "Research Engineer",
       institution: "Mens, Manus, and Machina (M3S)",
       location: "Remote",
-      period: "Jun 2024 - Present",
+      period: "Jun 2024 - Dec 2024",
       description: [
         "Led the system implementation of MindCoder <strong>theory-driven AI system</strong> for <strong>deductive qualitative analysis</strong>. Architected a global, hierarchical data management system with <strong>Zustand</strong> to optimize data retrieval from user inputs and uploaded files, integrating structured prompt embeddings with LLM API interactions. Achieved a <strong>40%</strong> improvement in data fetching speed and reduced data loss by <strong>20%</strong>.",
         "Authored key sections of application-associated research paper, including <strong>system architecture</strong>, <strong>primary features</strong>, and <strong>related works</strong>. Created <strong>detailed diagrams</strong> for experiment result analysis. The paper has been submitted to CHI 2025 and is currently under review.",
@@ -75,8 +75,7 @@ export const resumeData = {
     },
     {
       id: 2,
-      conference: "CIKM 2024",
-      published: "arXiv preprint arXiv:2407.03568",
+      published: "CIKM 2024",
       year: 2024,
       title:
         "When LLM Meets Hypergraph: A Sociological Analysis on Personality via Online Social Networks",

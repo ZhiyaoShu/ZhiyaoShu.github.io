@@ -7,65 +7,18 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/app/components/tabs";
+} from "@/app/components/ui/tabs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/app/components/card";
-import { Button } from "@/app/components/button";
+} from "@/app/components/ui/card";
+import { Button } from "@/app/components/ui/button";
 import { ChevronDown, ChevronUp, School, Factory } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/app/components/dropdown-menu";
-import { useToast } from "@/app/components/use-toast";
-import { Badge } from "@/app/components/badge";
 import { FileText } from "lucide-react";
-
-type Publication = {
-  id: number;
-  title: string;
-  authors: string;
-  year: number;
-  month: number;
-  url?: string;
-  conference?: string;
-  published?: string;
-  abstract: string | JSX.Element;
-};
-
-const formatCitation = (pub: Publication, format: "APA" | "MLA" | "BibTeX") => {
-  const authors = pub.authors.replace(/, /g, ", ").replace(/& /g, " & ");
-
-  const firstAuthorLastName = pub.authors.split(",")[0].trim().split(" ").pop();
-
-  const titleKey = pub.title.split(" ").slice(0, 3).join("").toLowerCase();
-
-  switch (format) {
-    case "APA":
-      return `${authors} (${pub.year}, ${pub.month}). ${pub.title}. ${
-        pub.url ? pub.url : ""
-      }`;
-    case "MLA":
-      return `${authors}. "${pub.title}." ${pub.year}. ${
-        pub.url ? pub.url : ""
-      }`;
-    case "BibTeX":
-      return `@article{${firstAuthorLastName}${pub.year}${titleKey},
-              author = {${authors}},
-              title = {${pub.title}},
-              year = {${pub.year}},
-              journal = {${pub.published}},
-            }`;
-    default:
-      return "";
-  }
-};
+import { ArrowIcon } from "@/app/components/ui/icons";
 
 const Projects: React.FC = () => {
   useEffect(() => {
@@ -74,83 +27,27 @@ const Projects: React.FC = () => {
     }
   }, []);
 
-  const { toast } = useToast();
   const [expandedExperience, setExpandedExperience] = useState<number | null>(
     null
   );
-  const [expandedPublication, setExpandedPublication] = useState<number | null>(
-    null
-  );
-  const [sortedPublications, setSortedPublications] = useState(
-    resumeData.publication
-  );
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   const toggleExperience = (id: number) => {
     setExpandedExperience(expandedExperience === id ? null : id);
   };
 
-  const togglePublication = (id: number) => {
-    setExpandedPublication(expandedPublication === id ? null : id);
-  };
-
-  const sortPublications = (year: number | null) => {
-    let filtered = year
-      ? resumeData.publication.filter((pub) => pub.year === year)
-      : resumeData.publication;
-
-    setSortedPublications(filtered.sort((a, b) => b.id - a.id));
-  };
-
-  useEffect(() => {
-    sortPublications(selectedYear);
-  }, [selectedYear]);
-
-  const handleYearChange = (year: number | null) => {
-    setSelectedYear(year);
-  };
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      const { dismiss } = toast({
-        title: "Citation copied",
-        description: "The citation has been copied to your clipboard.",
-      });
-      setTimeout(() => {
-        dismiss();
-      }, 2000);
-    } catch (error) {
-      const { dismiss } = toast({
-        title: "Failed to copy",
-        description: "An error occurred while copying the citation.",
-        variant: "destructive",
-      });
-      setTimeout(() => {
-        dismiss();
-      }, 2000);
-    }
-  };
-
-  const years = Array.from(
-    new Set(resumeData.publication.map((pub) => pub.year))
-  ).sort((a, b) => b - a);
-
   return (
     <div className="container mx-auto p-4 items-center justify-center">
-      <h1 className="mb-4 text-2xl font-semibold tracking-tighter">About</h1>
-      <p className="text-muted-foreground mb-4">
+      <h1 className="mb-4 text-2xl font-semibold tracking-tighter">About Me</h1>
+      {/* <p className="text-muted-foreground mb-4">
         My background in environmental and architectural design at UC Berkeley
         deeply shaped my understanding of complex, dynamic relationships between
-        humans, systems, and environments. This experience also improved my techniques of
-        developing informative graphics to tell stories. This foundation
-        continues to shape my current research in machine learning, where I
-        focus on sensemaking and simulating human cognitive reasoning processes
-        to allow AI understand complex linguistic, semantic narratives across
-        modalities. Leveraging these insights, I am passionate about developing
-        interpretable and interactive systems that can capture nuances of
-        experience in ways machines cannot directly perceive.
-      </p>
+        humans, systems, and environments. This experience also improved my
+        techniques of developing informative graphics to tell stories. This
+        foundation continues to shape my current research in machine learning,
+        where I focus on sensemaking and simulating human cognitive reasoning
+        processes to allow AI understand compositional, semantic narratives
+        across modalities. 
+      </p> */}
       <Button
         variant="ghost"
         size="sm"
@@ -158,7 +55,7 @@ const Projects: React.FC = () => {
         className="gap-2 pl-0 mb-4 hover:bg-white"
       >
         <a
-          href="/data/Zoey_CV2024.pdf"
+          href="/data/Zoey_CV2025.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -170,7 +67,7 @@ const Projects: React.FC = () => {
         <div className="flex flex-col gap-3 justify-start items-start mb-4">
           <TabsList className="flex flex-row">
             <TabsTrigger value="experiences">Experiences</TabsTrigger>
-            <TabsTrigger value="publications">Publications</TabsTrigger>
+            {/* <TabsTrigger value="photography">Photography</TabsTrigger> */}
           </TabsList>
         </div>
         <TabsContent value="experiences">
@@ -217,107 +114,16 @@ const Projects: React.FC = () => {
             </Card>
           ))}
         </TabsContent>
-
-        {/* Publication */}
-        <TabsContent value="publications">
-          <div className="mb-4 flex flex-wrap gap-2">
-            <Badge
-              variant={selectedYear === null ? "default" : "outline"}
-              className="cursor-pointer"
-              onClick={() => handleYearChange(null)}
-            >
-              All Years
-            </Badge>
-            {years.map((year) => (
-              <Badge
-                key={year}
-                variant={selectedYear === year ? "default" : "outline"}
-                className="cursor-pointer"
-                onClick={() => handleYearChange(year)}
-              >
-                {year}
-              </Badge>
-            ))}
-          </div>
-          {sortedPublications.map((pub) => (
-            <Card key={pub.id} className="mb-4">
-              <CardHeader>
-                <CardTitle className="flex justify-between items-center">
-                  {pub.title}
-                  <Button
-                    variant="ghost"
-                    onClick={() => togglePublication(pub.id)}
-                  >
-                    {expandedPublication === pub.id ? (
-                      <ChevronUp />
-                    ) : (
-                      <ChevronDown />
-                    )}
-                  </Button>
-                </CardTitle>
-                <CardDescription>{pub.authors}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-2">
-                  {pub.month} {pub.year}
-                </p>
-                <div className="flex gap-2 mb-2">
-                  {pub.url && (
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={pub.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View
-                      </a>
-                    </Button>
-                  )}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        Cite
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "APA"))
-                        }
-                      >
-                        APA
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "MLA"))
-                        }
-                      >
-                        MLA
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="cursor-pointer"
-                        onClick={() =>
-                          copyToClipboard(formatCitation(pub, "BibTeX"))
-                        }
-                      >
-                        BibTeX
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-                {expandedPublication === pub.id && (
-                  <div className="mt-4">
-                    <h4 className="font-semibold mb-2">Abstract</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {pub.abstract}
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
+        <TabsContent value="photography">
+          <a
+            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://www.linkedin.com/in/zhiyao-shu-4b4b0016b/"
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7">Instagram</p>
+          </a>
         </TabsContent>
       </Tabs>
     </div>
