@@ -29,7 +29,8 @@
     "typeRoots": [
       "./node_modules/@types",
       "./src/types"
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -38,7 +39,7 @@
     ".next/types/**/*.ts",
     "app/components/projects_list.js",
     "parseBib.mjs",
-    "app/projects/bench/CallLLM.tsx",
+    "app/projects/bench/CallLLM.tsx"
   ],
   "exclude": [
     "node_modules"
