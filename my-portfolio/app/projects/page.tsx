@@ -13,11 +13,21 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { ArrowIcon } from "@/app/components/ui/icons";
 import projects from "./projects_list";
-https://mind-coder-frontend.vercel.app/
+
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  image: React.ReactNode;
+  tags: string[];
+  link: string;
+  layout?: "horizontal" | "vertical";
+};
+
 export default function ProjectsPage() {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const sortedProjects = [...projects].sort((a, b) => b.id - a.id);
+  const sortedProjects = [...projects].reverse();
 
   const filteredProjects = selectedTag
     ? sortedProjects.filter((project) => project.tags?.includes(selectedTag))
@@ -44,13 +54,7 @@ export default function ProjectsPage() {
       </div>
       <div className="space-y-6">
         {filteredProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            project={{
-              ...project,
-              layout: project.layout as "horizontal" | "vertical",
-            }}
-          />
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </div>
@@ -58,5 +62,26 @@ export default function ProjectsPage() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  // ... existing ProjectCard code ...
+  return (
+    <Card className="overflow-hidden">
+      <CardContent className="p-4">
+        <h3 className="text-md font-semibold mb-2">{project.title}</h3>
+        <p className="text-sm text-gray-600 mb-2">{project.description}</p>
+        <div className="flex flex-wrap gap-2 mb-2">
+          {project.tags.map((tag) => (
+            <Badge key={tag} variant="secondary">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+        {project.link && (
+          <Button variant="outline" size="sm" asChild>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              View Project <ArrowIcon />
+            </a>
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
 }
