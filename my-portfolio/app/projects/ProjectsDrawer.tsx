@@ -19,7 +19,7 @@ export function ProjectsDrawer() {
       <DropdownMenuContent>
         <div className="flex flex-col gap-2 mt-2">
           <Link
-            href="https://mind-coder-frontend.vercel.app/"
+            href="https://mindcoder.ai/"
             target="_blank"
             className="text-sm hover:underline flex items-center gap-2"
           >
