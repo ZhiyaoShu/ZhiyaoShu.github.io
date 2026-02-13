@@ -35,7 +35,7 @@ export const newsItems: NewsItem[] = [
         Released MindCoder v2! Generate full reports with one-click! Try our
         tool at{" "}
         <a
-          href="https://mind-coder-frontend.vercel.app/"
+          href="https://mindcoder.ai/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-semibold text-gray-600"
