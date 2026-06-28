@@ -2,6 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────────────────────────────────────
+   Personal-website design tokens (Zoey Shu — Research Portfolio)
+   Light = "Cool slate" tone, accent #2f63d8. Dark overrides via
+   the `dark` class on <html>.
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #eef1f6;
+  --ink: #1a1e27;
+  --ink-2: #4b5563;
+  --ink-3: #8b94a3;
+  --line: #e3e8ef;
+  --accent: #2f63d8;
+  --accent-soft: #e9f0fd;
+  --accent-border: #c6d8f7;
+  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
+  --font-serif: var(--font-spectral), Spectral, serif;
+}
+
+html.dark {
+  --bg: #0d1016;
+  --surface: #151a22;
+  --surface-2: #1c222c;
+  --ink: #e9edf3;
+  --ink-2: #a9b2c1;
+  --ink-3: #69727f;
+  --line: #232a35;
+  --accent: #e9edf3;
+  --accent-soft: #1c222c;
+  --accent-border: #2c333f;
+}
+
+html,
+body {
+  background: var(--bg);
+}
+
+::selection {
+  background: #dfe3ea;
+  color: var(--ink);
+}
+
+@keyframes toastUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

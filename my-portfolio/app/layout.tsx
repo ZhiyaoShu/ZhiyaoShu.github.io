@@ -1,25 +1,38 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Navbar } from "./components/nev";
+import { Spectral, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
-import { Toaster } from "@/app/components/toaster";
+
+const spectral = Spectral({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-spectral",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://localhost:3000"),
   title: {
-    default: "Zoey's Portfolio",
+    default: "Zoey (Zhiyao) Shu",
     template: "%s | Zoey Shu",
   },
-  description: "Developer, AI researcher.",
+  description:
+    "Zoey (Zhiyao) Shu — PhD student in Information Science & Technology at George Mason University. Computer vision and human–AI collaboration.",
   openGraph: {
-    title: "Zoey's Portfolio",
-    description: "Developer, AI researcher.",
+    title: "Zoey (Zhiyao) Shu",
+    description:
+      "PhD student in Information Science & Technology at George Mason University. Computer vision and human–AI collaboration.",
     url: "https://localhost:3000",
-    siteName: "Zoey's Portfolio",
+    siteName: "Zoey's Research",
     locale: "en_US",
     type: "website",
   },
@@ -47,21 +60,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-[#111010]",
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      className={cx(spectral.variable, jetbrainsMono.variable)}
+      suppressHydrationWarning
     >
-      <body className="antialiased overflow-x-hidden items-center flex flex-col lg:mx-auto min-h-screen">
-        <main className="flex-auto min-w-0 max-w-3xl justify-start mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Toaster />
-          <Analytics />
-          <SpeedInsights />
-        </main>
-        <Footer />
+      <body className="antialiased">
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

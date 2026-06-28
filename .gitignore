@@ -101,7 +101,4 @@ next-env.d.ts
 
 
 *.mp4
-*.png
 .vercel
-package-lock.json
-package.json
