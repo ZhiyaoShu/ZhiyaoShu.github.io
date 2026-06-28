@@ -4,17 +4,18 @@
 
 /* ───────────────────────────────────────────────────────────
    Personal-website design tokens (Zoey Shu — Research Portfolio)
-   Light = "Cool slate" tone, accent #2f63d8. Dark overrides via
+   Light = "Pure white" tone, accent #2f63d8. Dark overrides via
    the `dark` class on <html>.
    ─────────────────────────────────────────────────────────── */
 :root {
-  --bg: #f5f7fa;
+  /* bgTone: Pure white */
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #eef1f6;
+  --surface-2: #f3f4f6;
   --ink: #1a1e27;
   --ink-2: #4b5563;
   --ink-3: #8b94a3;
-  --line: #e3e8ef;
+  --line: #eceef1;
   --accent: #2f63d8;
   --accent-soft: #e9f0fd;
   --accent-border: #c6d8f7;
