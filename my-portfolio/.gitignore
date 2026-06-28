@@ -38,3 +38,7 @@ next-env.d.ts
 
 *.mp4
 .vercel
+
+# design-sync scratch
+.ds-sync/
+ds-bundle/
