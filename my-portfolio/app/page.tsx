@@ -870,26 +870,26 @@ export default function Page() {
             <h2 style={sectionH2}>Blogs</h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={blogRow}>
-              <span style={blogDate}>Sep 2023</span>
+            <a
+              href="/blog/weekly-research-digest-agent"
+              style={{
+                ...blogRow,
+                borderBottom: "1px solid var(--line)",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <span style={blogDate}>Jun 2026</span>
               <div style={{ flex: 1 }}>
-                <h3 style={blogTitle}>Getting Started with React</h3>
+                <h3 style={blogTitle}>Building a Weekly Research Digest Agent</h3>
                 <p style={{ fontSize: "13.5px", lineHeight: 1.55, color: "var(--ink-2)", margin: 0 }}>
-                  A primer on building reusable UI components and managing application state efficiently with React.
+                  A couple hundred new arXiv papers land in my categories every week, and maybe a dozen are worth my
+                  time. So I built an agent to find them — it scores each paper against my actual research and posts
+                  the 20 best to my Discord every Monday. Serverless, and free.
                 </p>
               </div>
-              <span style={blogRead}>5 min</span>
-            </div>
-            <div style={{ ...blogRow, borderBottom: "1px solid var(--line)" }}>
-              <span style={blogDate}>Jul 2023</span>
-              <div style={{ flex: 1 }}>
-                <h3 style={blogTitle}>CSS Grid Layout: A Comprehensive Guide</h3>
-                <p style={{ fontSize: "13.5px", lineHeight: 1.55, color: "var(--ink-2)", margin: 0 }}>
-                  From basic concepts to advanced techniques for building complex, responsive web layouts with CSS Grid.
-                </p>
-              </div>
-              <span style={blogRead}>7 min</span>
-            </div>
+              <span style={blogRead}>12 min</span>
+            </a>
           </div>
         </section>
 
