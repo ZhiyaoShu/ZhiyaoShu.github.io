@@ -1,6 +1,6 @@
 # Building a Weekly Research Digest Agent
 
-I read in two narrow lanes — video temporal reasoning and intent inference for human-robot interaction — and arXiv does not care. Five categories I follow (`cs.CV`, `cs.LG`, `cs.AI`, `cs.RO`, `cs.HC`) push something like 150–300 new papers a week. Maybe a dozen are worth my attention. The rest is noise I still have to wade through to find the dozen.
+In this AI era we could develop anything that fits into our own perference, This pipeline is suitable for you if you are relied on Claude and github during your workflow. And so far, my research  video temporal reasoning and intent inference for human-robot interaction, and collect 5 categories from arXiv to push something like 150–300 new papers a week. Maybe a dozen are worth my attention. The rest is noise I still have to wade through to find the dozen.
 
 So I built an agent to do the wading. Every Monday morning it pulls the week's papers, scores each one against a written description of what I actually work on, and posts the top 20 to a Discord channel — ranked, one-line reason attached. No server. No daemon I have to babysit. It runs on GitHub Actions for free and emails me nothing, because the output lives where I already am.
 
@@ -96,7 +96,7 @@ The one-line reason is the feature that earns its keep. A bare score tells me no
 
 ### Why Groq
 
-I started on Hugging Face Inference Providers. I moved to [Groq](https://console.groq.com), and the commit that did it (`Switch from HF Inference Providers to Groq free tier`) was the single biggest reliability jump in the project. Reasons, in order of how much they mattered:
+I started on Hugging Face Inference Providers. I moved to [Groq](https://groq.com/), and the commit that did it (`Switch from HF Inference Providers to Groq free tier`) was the single biggest reliability jump in the project. Reasons, in order of how much they mattered:
 
 - **A genuinely free tier that fits the job.** `llama-3.3-70b-versatile` on Groq gives ~30 requests/min and ~14,400/day. Scoring ~150 abstracts is roughly 145K tokens — comfortably inside the free daily budget. The whole digest costs me nothing.
 - **OpenAI-compatible API.** No vendor SDK. It's a `requests.post` to a chat-completions endpoint. If Groq ever disappoints, swapping providers is a URL and a model string.
@@ -209,23 +209,9 @@ One paper isn't worth blocking the digest. Drop it, tally it, keep going.
 
 ## Where the Discord bot fits
 
-The webhook above is one-way: agent → channel. But the same Discord channel is also wired to an interactive bot (I run a local Claude Code stack, ClaudeClaw), and that two-way layer is what makes the whole thing feel less like cron and more like an assistant:
+The webhook above is one-way: agent → channel. But the same Discord channel is also wired to an interactive bot (I run a local Claude Code stack), and that two-way layer is what makes the whole thing feel less like cron and more like an assistant:
 
 - **The digest channel is also a journal.** Between digests I just type into it — "todo: read the GR-1 paper," "done with the fusion baseline." A separate daily-briefing workflow reads those messages back via the Discord API and folds them into a morning brief. The channel I *receive* research in is the same channel I *think out loud* in.
 - **The bot shares one session.** Heartbeat, cron jobs, Telegram, and Discord messages all run against a single Claude Code session, so context carries across surfaces.
 
 The research digest doesn't strictly need the bot — the webhook is self-sufficient. But putting the automated output and my manual notes in the same place is what turns a feed into a workflow.
-
-## What's next
-
-A few threads I'm pulling on:
-
-- **A feedback loop.** Right now my reactions in Discord go nowhere. The obvious next step is to let a 👍/👎 on a digest entry feed back into the scoring prompt as few-shot examples — turn my taste into training signal.
-- **Beyond arXiv.** OpenReview and conference RSS feeds would catch things arXiv misses.
-- **Multi-agent.** A scout that proposes new search categories when it notices a cluster of high-scoring papers I didn't explicitly ask for.
-
-But honestly, the current version already did the thing I built it for: I open Discord on Monday, read twenty ranked lines, open three PDFs, and get on with my week. The noise wades through itself now.
-
----
-
-*The full source — `scripts/research.py` and `.github/workflows/weekly-research.yml` — lives in [my personalClaw repo](https://github.com/ZhiyaoShu/personalClaw). It's about 280 lines of Python and 40 of YAML. The hard part was never the code; it was every way the code can fail at 9 AM on a Monday when I'm not watching.*
