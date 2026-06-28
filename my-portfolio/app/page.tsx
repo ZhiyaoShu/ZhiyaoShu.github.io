@@ -713,7 +713,7 @@ export default function Page() {
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {pubs.map((p) => {
               const hasVenue = !!p.venue && p.venueType !== "Pre-print";
-              const urlTarget = /^https?:/i.test(p.url || "") ? "_blank" : "_self";
+              const urlTarget = "_blank";
               const expanded = expandedPubId === p.id;
               const citeOpen = citeOpenId === p.id;
               return (

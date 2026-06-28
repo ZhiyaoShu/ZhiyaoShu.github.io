@@ -64,6 +64,7 @@ pnpm-lock.yaml
 *.iml
 *.log
 *.log.*
+*.zip
 
 /node_modules
 /.pnp

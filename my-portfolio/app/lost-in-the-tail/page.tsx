@@ -168,7 +168,7 @@ export default function PaperPage() {
             <a href="#" style={heroBtn}>
               Paper
             </a>
-            <a href="https://github.com/ZhiyaoShu/ECCV_2026_VPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+            <a href="https://github.com/ZhiyaoShu/Distribution-Aware-Place-Recognition-DAPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Code
             </a>
             <a href="#bibtex" style={heroBtn}>
