@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 
-/* Apply Spectral serif as the display font across this page only. */
-const PAPER_VARS = { "--font-display": "var(--font-serif)" } as CSSProperties;
+/* Apply Spectral serif as the display font and a custom page background across this page only. */
+const PAPER_VARS = { "--font-display": "var(--font-serif)", "--bg": "#f5f7fa" } as CSSProperties;
 
 const BIBTEX = `@inproceedings{shu2026lost,
   author    = {Zhiyao Shu and Jiacheng Yang and Yang Lu and Waishan Qiu and Chuan Li and Da Chen},
