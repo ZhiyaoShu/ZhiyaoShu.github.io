@@ -29,51 +29,71 @@ type Group = { label: string; rows: Row[] };
 
 const star = <span style={{ color: "var(--accent)" }}>*</span>;
 
+// Table 1, trimmed to the rows that carry the story. Full 20-row comparison lives in the paper.
 const groups: Group[] = [
   {
     label: "Classification",
     rows: [
-      { method: "PlaNet", backbone: "EfficientNet", time: "12 ms", v1: "24.5", v2: "53.1" },
-      { method: "HGE", backbone: "EfficientNet", time: "15 ms", v1: "27.0", v2: "56.4" },
-      { method: "CPlaNet", backbone: "EfficientNet", time: "17 ms", v1: "27.4", v2: "64.1" },
       { method: "D&C", backbone: "EfficientNet", time: "12 ms", v1: "61.0", v2: "79.1" },
-      { method: "DAPR‑C", backbone: "EfficientNet", time: "—", timeMuted: true, v1: "67.2", v2: "84.1", variant: "dapr" },
-      { method: "DAPR‑C", backbone: "ResNet101", time: "—", timeMuted: true, v1: "68.9", v2: "85.5", variant: "dapr", groupTop: true },
       { method: "DAPR‑C", backbone: "DINOv2", time: "—", timeMuted: true, v1: "86.4", v2: "91.1", variant: "dapr", groupTop: true },
     ],
   },
   {
     label: "Retrieval",
     rows: [
-      { method: "NetVLAD", backbone: "VGG16", time: "12117 ms", v1: "40.0", v2: "71.1" },
-      { method: "SFRS", backbone: "VGG16", time: "12117 ms", v1: "51.2", v2: "83.1" },
-      { method: "GeM", backbone: "VGG16", time: "12117 ms", v1: "21.7", v2: "43.1" },
-      { method: "CosPlace", backbone: "VGG16", time: "1514 ms", v1: "64.7", v2: "83.4" },
-      { method: "CosPlace", backbone: "ResNet101", time: "1488 ms", v1: "70.9", v2: "81.9" },
       { method: "SALAD", backbone: "DINOv2", time: "4805 ms", v1: "87.6", v2: "93.5" },
-      { method: <>SALAD{star}</>, backbone: "DINOv2", time: "4823 ms", v1: "88.0", v2: "94.5" },
+      { method: <>SALAD{star}</>, backbone: "DINOv2", time: "4823 ms", v1: "88.0", v2: "94.5", variant: "dapr" },
       { method: "BoQ", backbone: "DINOv2", time: "21333 ms", v1: "83.7", v2: "92.8" },
-      { method: <>BoQ{star}</>, backbone: "DINOv2", time: "21047 ms", v1: "88.8", v2: "93.7" },
+      { method: <>BoQ{star}</>, backbone: "DINOv2", time: "21047 ms", v1: "88.8", v2: "93.7", variant: "dapr" },
     ],
   },
   {
     label: "Mixed pipeline",
     rows: [
       { method: "D&C + CosPlace", backbone: "EfficientNet", time: "30 ms", timeStrong: true, v1: "71.4", v2: "87.6" },
-      { method: "DAPR‑M", backbone: "EfficientNet", time: "51 ms", v1: "74.5", v2: "88.1", variant: "dapr" },
-      { method: "DAPR‑M", backbone: "ResNet101", time: "54 ms", v1: "76.3", v2: "88.0", variant: "dapr", groupTop: true },
       { method: "DAPR‑M", backbone: "DINOv2", time: "74 ms", v1: "89.7", v2: "94.3", variant: "best", groupTop: true },
     ],
   },
 ];
 
+/* Table 3 — generalization of LB loss across cities and seasons (R@1, %). */
+type StatRow = { method: ReactNode; backbone: string; cells: string[]; hi?: boolean };
+
+const generalizationCols = ["MSLS", "Pitts30k", "Nordland"];
+const generalizationRows: StatRow[] = [
+  { method: "CosPlace", backbone: "ResNet101", cells: ["81.7", "86.7", "41.1"] },
+  { method: <>CosPlace{star}</>, backbone: "ResNet101", cells: ["82.2", "89.4", "44.6"], hi: true },
+  { method: "SALAD", backbone: "DINOv2", cells: ["91.9", "92.3", "76.0"] },
+  { method: <>SALAD{star}</>, backbone: "DINOv2", cells: ["92.6", "92.7", "76.6"], hi: true },
+  { method: "BoQ", backbone: "DINOv2", cells: ["91.2", "92.6", "81.3"] },
+  { method: <>BoQ{star}</>, backbone: "DINOv2", cells: ["93.7", "92.9", "83.7"], hi: true },
+];
+
+/* Table 4 — tail-class R@1 on the sparsely-sampled, safety-critical zones. */
+type TailRow = { method: ReactNode; msls: string; pitts: string; mslsUp?: string; pittsUp?: string; hi?: boolean };
+const tailRows: TailRow[] = [
+  { method: "SALAD", msls: "86.49", pitts: "90.56" },
+  { method: <>SALAD{star}</>, msls: "87.39", pitts: "91.19", mslsUp: "+0.90", pittsUp: "+0.63", hi: true },
+  { method: "BoQ", msls: "89.64", pitts: "89.19" },
+  { method: <>BoQ{star}</>, msls: "91.44", pitts: "92.56", mslsUp: "+1.80", pittsUp: "+3.37", hi: true },
+];
+
 export default function PaperPage() {
   const [toast, setToast] = useState<string | null>(null);
+  const [showTop, setShowTop] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // The paper page has no dark mode; ensure the dark class is off here.
   useEffect(() => {
     document.documentElement.classList.remove("dark");
+  }, []);
+
+  // Reveal the back-to-top button once the reader has scrolled past the hero.
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => () => {
@@ -171,8 +191,8 @@ export default function PaperPage() {
             <a href="https://github.com/ZhiyaoShu/Distribution-Aware-Place-Recognition-DAPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Code
             </a>
-            <a href="#bibtex" style={heroBtn}>
-              BibTeX
+            <a href="https://www.youtube.com/watch?v=l11jF5Jse-Y" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+              Video
             </a>
           </div>
         </section>
@@ -213,12 +233,14 @@ export default function PaperPage() {
             src="/vpr/teaser_fig.png"
             alt="Geographic classes ranked by sample count with intra-class feature diversity and per-class Recall@1"
             caption="Geographic classes ranked by sample count (head / medium / tail). As samples drop toward the tail, intra-class feature diversity widens while per-class Recall@1 falls sharply."
+            maxW={600}
           />
           <div style={{ marginTop: 18 }}>
             <FigureCard
               src="/vpr/spatial.png"
               alt="Head, middle, and tail geographic classes across San Francisco"
               caption="Head, middle, and tail classes across San Francisco (SF-XL). Frequently photographed corridors dominate major roads, while residential and peripheral areas fall into the sparse tail."
+              maxW={600}
             />
           </div>
         </section>
@@ -249,18 +271,22 @@ export default function PaperPage() {
             src="/vpr/framework.png"
             alt="DAPR framework: DINO-v2 backbone with Low-visit Bias loss and multi-scale distance mixed-pipeline search"
             caption="The DAPR framework. A DINO-v2 backbone is trained with the Low-visit Bias loss across retrieval and classification heads; at inference, a multi-scale distance mixed-pipeline search re-ranks candidates with characteristic functions to return the top-K images."
-            pad={22}
+            pad={18}
           />
         </section>
 
-        {/* EXPERIMENTS */}
+        {/* EXPERIMENTS — MAIN */}
         <section style={{ padding: "56px 0 0" }}>
           <h2 style={{ ...paperH2, margin: "0 0 8px", textAlign: "center" }}>Experiment results</h2>
           <p style={{ ...subtitle }}>
-            Results on SF-XL test v1 and v2 across three VPR types. SALAD<span style={{ color: "var(--accent)" }}>*</span>{" "}
-            and BoQ<span style={{ color: "var(--accent)" }}>*</span> denote retraining with the proposed LB loss. DAPR-M
-            is the mixed pipeline with LB Loss and CFD.
+            On the large-scale SF-XL benchmark, DAPR-M reaches the best accuracy at a fraction of the retrieval cost,
+            while the Low-visit Bias loss lifts strong VPR methods as a drop-in plug-in. SALAD
+            <span style={{ color: "var(--accent)" }}>*</span> and BoQ<span style={{ color: "var(--accent)" }}>*</span>{" "}
+            denote retraining with the LB loss.
           </p>
+
+          <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <TableTag n="Table 1">Main comparison on SF-XL, test v1 / v2</TableTag>
           <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--surface)", overflow: "hidden" }}>
             <div style={{ overflowX: "auto" }}>
               <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 560, fontSize: "13.5px" }}>
@@ -282,30 +308,89 @@ export default function PaperPage() {
             </div>
           </div>
           <p style={caption}>
-            Bold figures mark the best mixed-pipeline result. DAPR-M (DINOv2) reaches 89.7 / 94.3 R@1 while staying over
-            60× faster than full-database retrieval methods.
+            Representative rows from the paper&rsquo;s 20-method comparison. DAPR-M (DINOv2) reaches{" "}
+            <B>89.7 / 94.3</B> R@1 at 74 ms per query, over <B>60× faster</B> than full-database retrieval.
           </p>
+          </div>
         </section>
 
-        {/* VIDEO */}
+        {/* EXPERIMENTS — GENERALIZATION */}
         <section style={{ padding: "56px 0 0" }}>
+          <h2 style={{ ...paperH2, margin: "0 0 8px", textAlign: "center" }}>Generalization &amp; tail-class gains</h2>
+          <p style={{ ...subtitle }}>
+            The LB loss is method-agnostic. Dropped into CosPlace, SALAD, and BoQ, it generalizes beyond San Francisco to
+            global cities, Pittsburgh, and extreme seasonal change, with the largest gains on tail classes.
+          </p>
+
+          <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <TableTag n="Table 3">Generalization across cities and seasons · R@1</TableTag>
+          <StatTable cols={generalizationCols} rows={generalizationRows} />
+          <p style={caption}>
+            Each method retrained with the LB loss (<span style={{ color: "var(--accent)" }}>*</span>) improves on every
+            benchmark. Gains are sharpest under seasonal shift on Nordland: CosPlace +3.5 and BoQ +2.4 R@1.
+          </p>
+          </div>
+
+          <div style={{ marginTop: 30, maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}>
+            <TableTag n="Table 4">Tail-class R@1 on small-scale benchmarks</TableTag>
+            <TailTable rows={tailRows} />
+            <p style={caption}>
+              Recall on the sparse tail classes, the locations existing models miss most. The gains here exceed the
+              overall improvement, with BoQ<span style={{ color: "var(--accent)" }}>*</span> up <B>+3.37</B> R@1 on
+              Pitts30k.
+            </p>
+          </div>
+
+          <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          {/* Two analysis plots, normalized to identical canvases, share one frame. */}
           <div
             style={{
+              marginTop: 38,
               border: "1px solid var(--line)",
               borderRadius: 14,
-              background: "#000",
-              overflow: "hidden",
-              aspectRatio: "16 / 9",
+              background: "var(--surface)",
+              padding: 16,
             }}
           >
-            <iframe
-              src="https://www.youtube.com/embed/l11jF5Jse-Y"
-              title="Lost in the Tail — overview video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              style={{ display: "block", width: "100%", height: "100%", border: 0 }}
-            />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "center" }} className="figrow">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/vpr/class_gains_pair.png"
+                alt="Recall gains of DAPR over D&C across head, middle, and tail classes at R@1 and R@5"
+                style={{ display: "block", width: "100%", height: "auto", borderRadius: 6 }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/vpr/cfd_comparison_pair.png"
+                alt="Characteristic Function Distance versus L2 retrieval across R@1, R@5, R@10 for SF-XL test v1 and v2"
+                style={{ display: "block", width: "100%", height: "auto", borderRadius: 6 }}
+              />
+            </div>
           </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }} className="figrow">
+            <p style={caption}>
+              DAPR lifts every group, but most at the sparse tail: +7.35% R@5 on tail versus +1.72% on head.
+            </p>
+            <p style={caption}>
+              The Characteristic Function Distance lifts recall at every cutoff on both SF-XL test sets, with no extra
+              training.
+            </p>
+          </div>
+          </div>
+        </section>
+
+        {/* CONCLUSION */}
+        <section style={{ padding: "56px 0 0" }}>
+          <h2 style={{ ...paperH2, textAlign: "center" }}>Conclusion</h2>
+          <p style={{ fontSize: 16, lineHeight: 1.72, color: "var(--ink-2)", margin: 0 }}>
+            We identify and address a long-tail problem baked into urban VPR, where geographic classes follow a roughly
+            300:1 image imbalance and existing models systematically fail on the under-sampled tail. DAPR answers it with
+            two plug-and-play modules: a Low-visit Bias loss that rebalances gradient contributions during training, and a
+            Characteristic Function Distance that adapts the retrieval metric to each class&rsquo;s distribution. Across
+            SF-XL, MSLS, Pitts30k, and Nordland, DAPR drops into existing VPR pipelines and holds across backbones,
+            lifting the sparse tail with no architectural changes. A natural next step is the feature-level long tail,
+            where class difficulty is set by intra-class feature coherence rather than raw sample count.
+          </p>
         </section>
 
         {/* BIBTEX */}
@@ -364,9 +449,44 @@ export default function PaperPage() {
         </div>
       )}
 
+      {/* Back to top — fades in after scrolling past the hero. */}
+      <button
+        type="button"
+        aria-label="Back to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        style={{
+          position: "fixed",
+          bottom: 26,
+          right: 26,
+          zIndex: 80,
+          width: 42,
+          height: 42,
+          borderRadius: 999,
+          border: "1px solid var(--line)",
+          background: "color-mix(in srgb, var(--surface) 86%, transparent)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          color: "var(--ink-2)",
+          fontSize: 17,
+          lineHeight: 1,
+          cursor: "pointer",
+          boxShadow: "0 10px 26px -12px rgba(0,0,0,.4)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: showTop ? 1 : 0,
+          transform: showTop ? "translateY(0)" : "translateY(8px)",
+          pointerEvents: showTop ? "auto" : "none",
+          transition: "opacity .2s ease, transform .2s ease",
+        }}
+      >
+        ↑
+      </button>
+
       <style>{`
         @media (max-width: 640px) {
           .module-grid { grid-template-columns: 1fr !important; }
+          .figrow { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>
@@ -405,15 +525,27 @@ function B({ children }: { children: ReactNode }) {
   return <strong style={{ color: "var(--ink)", fontWeight: 600 }}>{children}</strong>;
 }
 
-function FigureCard({ src, alt, caption: cap, pad = 20 }: { src: string; alt: string; caption: string; pad?: number }) {
+function FigureCard({
+  src,
+  alt,
+  caption: cap,
+  pad = 20,
+  maxW,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  pad?: number;
+  maxW?: number; // cap the figure width and center it; omit for full-width
+}) {
   return (
-    <>
+    <div style={{ maxWidth: maxW, margin: maxW ? "0 auto" : undefined }}>
       <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--surface)", padding: pad }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} alt={alt} style={{ display: "block", width: "100%", height: "auto", borderRadius: 6 }} />
       </div>
       <p style={caption}>{cap}</p>
-    </>
+    </div>
   );
 }
 
@@ -436,6 +568,106 @@ function ModuleCard({ eyebrow, title, body }: { eyebrow: string; title: string; 
         {title}
       </h3>
       <p style={{ fontSize: 14, lineHeight: 1.62, color: "var(--ink-2)", margin: 0 }}>{body}</p>
+    </div>
+  );
+}
+
+const GAIN_GREEN = "#2f9e5f";
+
+function TableTag({ n, children }: { n: string; children: ReactNode }) {
+  return (
+    <div style={{ display: "flex", alignItems: "baseline", gap: 9, margin: "0 0 10px", flexWrap: "wrap" }}>
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: ".04em",
+          textTransform: "uppercase",
+          color: "var(--accent)",
+          border: "1px solid var(--accent-border)",
+          background: "var(--accent-soft)",
+          padding: "3px 8px",
+          borderRadius: 6,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {n}
+      </span>
+      <span style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.4 }}>{children}</span>
+    </div>
+  );
+}
+
+function StatTable({ cols, rows }: { cols: string[]; rows: StatRow[] }) {
+  const last = cols.length - 1;
+  return (
+    <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--surface)", overflow: "hidden" }}>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 480, fontSize: "13.5px" }}>
+          <thead>
+            <tr style={{ borderBottom: "1px solid var(--line)" }}>
+              <th style={{ ...th, textAlign: "left", padding: "13px 18px" }}>Method</th>
+              <th style={{ ...th, textAlign: "left" }}>Backbone</th>
+              {cols.map((c, j) => (
+                <th key={c} style={{ ...th, textAlign: "right", padding: `13px ${j === last ? 18 : 14}px` }}>
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody style={{ fontFamily: "var(--font-mono)", color: "var(--ink-2)" }}>
+            {rows.map((r, i) => {
+              const ink = r.hi ? "var(--ink)" : undefined;
+              const weight = r.hi ? 600 : undefined;
+              return (
+                <tr key={i} style={{ borderTop: "1px solid var(--surface-2)", background: r.hi ? "var(--accent-soft)" : undefined }}>
+                  <td style={{ padding: "9px 18px", color: ink, fontWeight: weight }}>{r.method}</td>
+                  <td style={{ padding: "9px 14px", color: ink, fontWeight: weight }}>{r.backbone}</td>
+                  {r.cells.map((c, j) => (
+                    <td key={j} style={{ padding: `9px ${j === last ? 18 : 14}px`, textAlign: "right", color: ink, fontWeight: weight }}>
+                      {c}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function TailTable({ rows }: { rows: TailRow[] }) {
+  const numCell = (v: string, up: string | undefined, hi: boolean | undefined, rightPad: number) => (
+    <td style={{ padding: `9px ${rightPad}px`, textAlign: "right", color: hi ? "var(--ink)" : undefined, fontWeight: hi ? 600 : undefined }}>
+      {v}
+      {up && <span style={{ color: GAIN_GREEN, fontWeight: 600, marginLeft: 6, fontSize: "0.84em" }}>{up}</span>}
+    </td>
+  );
+  return (
+    <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--surface)", overflow: "hidden" }}>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 420, fontSize: "13.5px" }}>
+          <thead>
+            <tr style={{ borderBottom: "1px solid var(--line)" }}>
+              <th style={{ ...th, textAlign: "left", padding: "13px 18px" }}>Method</th>
+              <th style={{ ...th, textAlign: "right" }}>MSLS&nbsp;R@1</th>
+              <th style={{ ...th, textAlign: "right", padding: "13px 18px" }}>Pitts30k&nbsp;R@1</th>
+            </tr>
+          </thead>
+          <tbody style={{ fontFamily: "var(--font-mono)", color: "var(--ink-2)" }}>
+            {rows.map((r, i) => (
+              <tr key={i} style={{ borderTop: "1px solid var(--surface-2)", background: r.hi ? "var(--accent-soft)" : undefined }}>
+                <td style={{ padding: "9px 18px", color: r.hi ? "var(--ink)" : undefined, fontWeight: r.hi ? 600 : undefined }}>{r.method}</td>
+                {numCell(r.msls, r.mslsUp, r.hi, 14)}
+                {numCell(r.pitts, r.pittsUp, r.hi, 18)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -528,12 +760,10 @@ const paperH2: CSSProperties = {
 };
 
 const subtitle: CSSProperties = {
-  fontSize: 15,
-  lineHeight: 1.65,
+  fontSize: 16,
+  lineHeight: 1.72,
   color: "var(--ink-2)",
-  margin: "0 auto 22px",
-  maxWidth: 680,
-  textAlign: "center",
+  margin: "0 0 24px",
 };
 
 const caption: CSSProperties = {
@@ -541,7 +771,7 @@ const caption: CSSProperties = {
   lineHeight: 1.6,
   color: "var(--ink-3)",
   margin: "14px 0 0",
-  textAlign: "center",
+  textAlign: "left",
 };
 
 const heroBtn: CSSProperties = {
