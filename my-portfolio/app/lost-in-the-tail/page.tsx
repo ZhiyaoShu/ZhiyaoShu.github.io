@@ -248,7 +248,7 @@ export default function PaperPage() {
         {/* METHOD */}
         <section style={{ padding: "56px 0 0" }}>
           <h2 style={{ ...paperH2, margin: "0 0 8px", textAlign: "center" }}>DAPR — two plug-in modules</h2>
-          <p style={{ ...subtitle }}>
+          <p style={{ ...subtitle, textAlign: "center" }}>
             Model-agnostic: DAPR drops into existing VPR pipelines without architectural changes.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }} className="module-grid">

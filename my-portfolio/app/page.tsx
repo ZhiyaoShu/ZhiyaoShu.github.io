@@ -879,7 +879,7 @@ export default function Page() {
                 color: "inherit",
               }}
             >
-              <span style={blogDate}>Jun 2026</span>
+              <span style={blogDate}>Apr 2026</span>
               <div style={{ flex: 1 }}>
                 <h3 style={blogTitle}>Building a Weekly Research Digest Agent</h3>
                 <p style={{ fontSize: "13.5px", lineHeight: 1.55, color: "var(--ink-2)", margin: 0 }}>
