@@ -188,7 +188,18 @@ export default function PaperPage() {
             <a href="#" style={heroBtn}>
               Paper
             </a>
+            {/* Repo still in progress — restore this link once the code is public:
             <a href="https://github.com/ZhiyaoShu/Distribution-Aware-Place-Recognition-DAPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+              Code
+            </a> */}
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                showToast("Code coming soon");
+              }}
+              style={heroBtn}
+            >
               Code
             </a>
             <a href="https://www.youtube.com/watch?v=l11jF5Jse-Y" target="_blank" rel="noopener noreferrer" style={heroBtn}>
