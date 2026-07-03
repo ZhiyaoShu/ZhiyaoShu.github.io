@@ -185,7 +185,7 @@ export default function PaperPage() {
             European Conference on Computer Vision (ECCV), 2026
           </p>
           <div style={{ display: "flex", gap: 9, flexWrap: "wrap", justifyContent: "center" }}>
-            <a href="https://arxiv.org/abs/2607.00090" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+            <a href="https://arxiv.org/pdf/2607.00090" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Paper
             </a>
             <a href="https://github.com/ZhiyaoShu/Distribution-Aware-Place-Recognition-DAPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
