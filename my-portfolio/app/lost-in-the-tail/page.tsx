@@ -188,9 +188,13 @@ export default function PaperPage() {
             <a href="https://arxiv.org/pdf/2607.00090" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Paper
             </a>
+            {/* Code release pending — restore this link once the repo is public.
             <a href="https://github.com/ZhiyaoShu/Distribution-Aware-Place-Recognition-DAPR" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Code
-            </a>
+            </a> */}
+            <span style={{ ...heroBtn, color: "var(--ink-3)", cursor: "default" }}>
+              Code — release soon
+            </span>
             <a href="https://www.youtube.com/watch?v=l11jF5Jse-Y" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Video
             </a>
