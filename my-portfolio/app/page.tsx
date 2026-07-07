@@ -84,7 +84,7 @@ const projectsData: Project[] = [
     name: "Multimodal Plan Inference for Human–Robot Interaction",
     date: "May 2026",
     year: 2026,
-    url: "https://drive.google.com/drive/home",
+    url: "https://drive.google.com/file/d/1THA2-9hCa1efVpa2pjf-HqXIbwwkn9Rn/view?usp=sharing",
     tags: ["HRI", "multimodal", "plan inference", "computer vision"],
     desc: "A Bayesian framework that infers the intended plan of a person from multimodal cues — speech, pointing gestures, and facial expressions — so robots can interpret and act on human intent during collaborative interaction.",
   },
