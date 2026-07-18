@@ -1,5 +1,6 @@
 import { ContactForm } from "./ContactForm";
 import { ArrowIcon } from "../components/ui/icons";
+import Footer from "../components/footer";
 
 export default function Contact() {
   return (
@@ -57,6 +58,7 @@ export default function Contact() {
         message:
       </p>
       <ContactForm />
+      <Footer />
     </div>
   );
 }

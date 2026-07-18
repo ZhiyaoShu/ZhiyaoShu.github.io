@@ -350,7 +350,7 @@ export default function Page() {
               Writing
             </button>
             <a
-              href="/Zoey-Shu-CV.pdf"
+              href="/data/zoey_CV2026.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -890,6 +890,26 @@ export default function Page() {
                 </p>
               </div>
               <span style={blogRead}>12 min</span>
+            </a>
+            <a
+              href="/blog/road-trip-2025"
+              style={{
+                ...blogRow,
+                borderBottom: "1px solid var(--line)",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <span style={blogDate}>Jul 2025</span>
+              <div style={{ flex: 1 }}>
+                <h3 style={blogTitle}>Ten Days Across the Country</h3>
+                <p style={{ fontSize: "13.5px", lineHeight: 1.55, color: "var(--ink-2)", margin: 0 }}>
+                  A summer road trip from Seattle to Fairfax: wild horses over the Columbia, Devils
+                  Tower, the Badlands, a modernist pilgrimage in Columbus, Indiana, and Fallingwater
+                  on the way home. With a clickable route map.
+                </p>
+              </div>
+              <span style={blogRead}>6 min</span>
             </a>
           </div>
         </section>

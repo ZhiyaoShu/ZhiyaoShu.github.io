@@ -3,6 +3,7 @@
 import React from "react";
 import { ReactFlow } from "@xyflow/react";
 import { LoginForm } from "./Login";
+import Footer from "@/app/components/footer";
 import "@xyflow/react/dist/style.css";
 
 const initialNodes = [
@@ -36,6 +37,7 @@ export default function Zotero() {
         </div>
       </div>
       <LoginForm />
+      <Footer />
     </div>
   );
 }

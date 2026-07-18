@@ -12,6 +12,7 @@ import {
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
 import { ArrowIcon } from "@/app/components/ui/icons";
+import Footer from "@/app/components/footer";
 import projects from "./projects_list";
 
 type Project = {
@@ -57,6 +58,7 @@ export default function ProjectsPage() {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

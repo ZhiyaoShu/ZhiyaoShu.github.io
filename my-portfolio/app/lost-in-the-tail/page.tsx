@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
+import Footer from "@/app/components/footer";
 
 /* Apply Spectral serif as the display font and a custom page background across this page only. */
 const PAPER_VARS = { "--font-display": "var(--font-serif)", "--bg": "#f5f7fa" } as CSSProperties;
@@ -486,6 +487,8 @@ export default function PaperPage() {
       >
         ↑
       </button>
+
+      <Footer />
 
       <style>{`
         @media (max-width: 640px) {

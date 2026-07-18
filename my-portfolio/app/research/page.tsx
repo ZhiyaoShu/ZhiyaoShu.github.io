@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { resumeData } from "./resumeData";
+import Footer from "@/app/components/footer";
 import {
   Tabs,
   TabsContent,
@@ -126,6 +127,7 @@ const Projects: React.FC = () => {
           </a>
         </TabsContent>
       </Tabs>
+      <Footer />
     </div>
   );
 };

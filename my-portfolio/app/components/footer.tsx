@@ -1,16 +1,15 @@
 export default function Footer() {
   return (
-    <div className="text-center">
-      <p className="mt-8 text-neutral-500 dark:text-neutral-300">
-        © {new Date().getFullYear()} Content coprighted by Zhiyao Shu. Updated
-        until {new Date().toLocaleDateString()} All rights reserved.
-      </p>
-      <p className="mt-2 text-neutral-500 dark:text-neutral-300">
-        UI inspired by{" "}
-        <a href="https://vercel.com/templates/next.js/portfolio-starter-kit">
-          <u>Vercel Templates</u>
-        </a>
-      </p>
-    </div>
+    <footer style={{ textAlign: "center", padding: "40px 24px 28px" }}>
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "11.5px",
+          color: "var(--ink-3)",
+        }}
+      >
+        © 2026 Content copyrighted by Zoey (Zhiyao) Shu · All rights reserved.
+      </span>
+    </footer>
   );
 }

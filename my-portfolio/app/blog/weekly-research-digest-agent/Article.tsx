@@ -3,6 +3,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { CSSProperties } from "react";
+import Footer from "../../components/footer";
 
 const PAPER_VARS = { "--font-display": "var(--font-serif)" } as CSSProperties;
 
@@ -98,6 +99,7 @@ export default function Article({
             ← back to Zoey Shu
           </a>
         </section>
+        <Footer />
       </main>
 
       <style>{`
