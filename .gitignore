@@ -104,9 +104,10 @@ next-env.d.ts
 *.mp4
 .vercel
 
-# --- Vercel deploy: keep the Next app's config + public assets ---
+# --- Keep the Next app's config + public assets ---
 # (override the broad *.json / *.jpg / *.png ignores above)
 !my-portfolio/package.json
+!my-portfolio/package-lock.json
 !my-portfolio/public/**
 
 # next-sitemap generated output

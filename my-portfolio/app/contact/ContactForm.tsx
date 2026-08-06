@@ -16,15 +16,29 @@ export function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/comments", {
+      const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      if (!accessKey) {
+        throw new Error("NEXT_PUBLIC_WEB3FORMS_KEY is not configured");
+      }
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify({ email, text }),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New message from your portfolio",
+          from_name: "Portfolio contact form",
+          email,
+          message: text,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         toast({
           title: "Message sent",
           description: "Your message has been sent successfully.",

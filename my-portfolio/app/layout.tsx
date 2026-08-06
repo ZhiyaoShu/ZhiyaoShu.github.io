@@ -1,8 +1,8 @@
 import "./global.css";
 import type { Metadata } from "next";
 import { Spectral, JetBrains_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 const spectral = Spectral({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://localhost:3000"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Zoey (Zhiyao) Shu",
     template: "%s | Zoey Shu",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Zoey (Zhiyao) Shu",
     description:
       "PhD student in Information Science & Technology at George Mason University. Computer vision and human–AI collaboration.",
-    url: "https://localhost:3000",
+    url: siteUrl,
     siteName: "Zoey's Research",
     locale: "en_US",
     type: "website",
@@ -65,8 +65,6 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
