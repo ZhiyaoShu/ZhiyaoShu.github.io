@@ -199,6 +199,9 @@ export default function PaperPage() {
             <a href="https://www.youtube.com/watch?v=l11jF5Jse-Y" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Video
             </a>
+            <a href="/vpr/poster.png" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+              Poster
+            </a>
           </div>
         </section>
 
@@ -382,6 +385,19 @@ export default function PaperPage() {
             </p>
           </div>
           </div>
+        </section>
+
+        {/* POSTER */}
+        <section style={{ padding: "56px 0 0" }}>
+          <h2 style={{ ...paperH2, textAlign: "center" }}>Poster</h2>
+          <a href="/vpr/poster.png" target="_blank" rel="noopener noreferrer" style={{ display: "block", textDecoration: "none" }}>
+            <FigureCard
+              src="/vpr/poster_thumb.png"
+              alt="ECCV 2026 poster for Lost in the Tail: Addressing Geographic Imbalance in Urban Visual Place Recognition"
+              caption="ECCV 2026 poster, Malmö, Sweden. Click to open the full-resolution image."
+              maxW={900}
+            />
+          </a>
         </section>
 
         {/* CONCLUSION */}
