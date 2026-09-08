@@ -510,10 +510,6 @@ export default function Page() {
                 <a href="https://www.gmu.edu/" target="_blank" rel="noopener noreferrer" style={bioLink}>
                   George Mason University
                 </a>
-                , advised by{" "}
-                <a href="https://alignment.lab.gmu.edu/" target="_blank" rel="noopener noreferrer" style={bioLink}>
-                  Sungsoo Ray Hong
-                </a>
                 .
               </p>
               <p style={{ fontSize: "16.5px", lineHeight: 1.62, color: "var(--ink-2)", margin: "14px 0 0" }}>
