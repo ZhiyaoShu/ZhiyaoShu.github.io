@@ -196,7 +196,7 @@ export default function PaperPage() {
             <span style={{ ...heroBtn, color: "var(--ink-3)", cursor: "default" }}>
               Code — release soon
             </span>
-            <a href="https://www.youtube.com/watch?v=l11jF5Jse-Y" target="_blank" rel="noopener noreferrer" style={heroBtn}>
+            <a href="https://www.youtube.com/watch?v=rPC2oj8JOr0" target="_blank" rel="noopener noreferrer" style={heroBtn}>
               Video
             </a>
           </div>
