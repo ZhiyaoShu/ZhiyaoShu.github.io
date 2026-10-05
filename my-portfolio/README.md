@@ -48,6 +48,10 @@ After deploying:
 
 1. Add the **URL-prefix** property `https://zhiyaoshu.github.io/` to
    [Google Search Console](https://search.google.com/search-console/).
+   For HTML-file verification, place the downloaded `google*.html` file in
+   `public/` with its filename and content unchanged. The repository root is not
+   published. After deployment, confirm the file is accessible at the site's
+   root URL before clicking Verify; retain it in `public/` after verification.
 2. If using HTML-tag verification, copy just the tag's `content` value to the
    repository's Actions variable `GOOGLE_SITE_VERIFICATION`, then rerun the Pages
    workflow and finish verification. `BING_SITE_VERIFICATION` similarly supplies
