@@ -52,6 +52,8 @@ jobs:
       - name: Build static export
         env:
           NEXT_PUBLIC_SITE_URL: https://zhiyaoshu.github.io
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+          BING_SITE_VERIFICATION: ${{ vars.BING_SITE_VERIFICATION }}
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
         run: npm run build
 

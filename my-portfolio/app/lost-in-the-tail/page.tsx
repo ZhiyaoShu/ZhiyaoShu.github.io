@@ -170,7 +170,7 @@ export default function PaperPage() {
             Lost in the Tail: Addressing Geographic Imbalance in Urban Visual Place Recognition
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: "var(--ink-2)", margin: "0 auto 6px", maxWidth: 760 }}>
-            <Author href="https://github.com/ZhiyaoShu" name="Zhiyao Shu" n={1} />,{" "}
+            <Author href="/" name="Zhiyao Shu" n={1} />,{" "}
             <Author href="https://jia-cheng-yang.github.io/" name="Jiacheng Yang" n={2} />,{" "}
             <Author href="https://jasonyanglu.github.io/" name="Yang Lu" n={2} />,{" "}
             <Author href="https://scholar.google.com/citations?user=nrS-PX4AAAAJ&hl=en" name="Waishan Qiu" n={3} />,{" "}

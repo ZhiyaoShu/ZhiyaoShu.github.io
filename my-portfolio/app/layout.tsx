@@ -1,8 +1,7 @@
 import "./global.css";
 import type { Metadata } from "next";
 import { Spectral, JetBrains_Mono } from "next/font/google";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { homeDescription, homeTitle, siteUrl } from "@/lib/site";
 
 const spectral = Spectral({
   subsets: ["latin"],
@@ -22,19 +21,22 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Zoey (Zhiyao) Shu",
-    template: "%s | Zoey Shu",
+    default: homeTitle,
+    template: "%s | Zhiyao Shu",
   },
-  description:
-    "Zoey (Zhiyao) Shu — PhD student in Information Science & Technology at George Mason University. Computer vision and human–AI collaboration.",
+  description: homeDescription,
   openGraph: {
-    title: "Zoey (Zhiyao) Shu",
-    description:
-      "PhD student in Information Science & Technology at George Mason University. Computer vision and human–AI collaboration.",
-    url: siteUrl,
+    title: homeTitle,
+    description: homeDescription,
     siteName: "Zoey's Research",
     locale: "en_US",
     type: "website",
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
   },
   robots: {
     index: true,
