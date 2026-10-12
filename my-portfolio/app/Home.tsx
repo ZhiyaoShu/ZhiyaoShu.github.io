@@ -460,7 +460,7 @@ export default function Page() {
                 </span>
                 <span style={{ color: "var(--line)" }}>·</span>
                 <span style={metaPill}>Computer Vision</span>
-                <span style={metaPill}>Human–Robot Interaction</span>
+                <span style={metaPill}>Human–AI Collaboration</span>
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 <a
